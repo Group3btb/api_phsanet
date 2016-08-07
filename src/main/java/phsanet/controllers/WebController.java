@@ -23,7 +23,7 @@ public class WebController {
 	@Autowired
 	@Qualifier("webserviceimplement")
 	private WebServiceImplement webserviceimplement;
-	@RequestMapping(value={"/web"}, method = RequestMethod.GET)
+	@RequestMapping(value={"/api/web"}, method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllWeb(){
 		ArrayList<Webs> allweb = new ArrayList<Webs>();
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -39,7 +39,7 @@ public class WebController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/web"},method = RequestMethod.POST)
+	@RequestMapping(value={"/api/web"},method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveWeb(@RequestBody Webs web){
 		Map<String,Object> map = new HashMap<String, Object>();
 		System.out.println(web.toString());
@@ -52,7 +52,7 @@ public class WebController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
-	@RequestMapping(value={"/web/{id}"}, method = RequestMethod.DELETE)
+	@RequestMapping(value={"/api/web/{id}"}, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> removeWeb(@PathVariable("id") int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(webserviceimplement.remove(id)){
@@ -66,7 +66,7 @@ public class WebController {
 	}
 	
 	
-	@RequestMapping(value={"/web"},method = RequestMethod.PUT)
+	@RequestMapping(value={"/api/web"},method = RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateWeb(@RequestBody Webs web){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(webserviceimplement.update(web)){
@@ -79,7 +79,7 @@ public class WebController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/web/{search}"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/web/{search}"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchWeb(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<Webs> allweb = new ArrayList<Webs>();

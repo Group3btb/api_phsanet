@@ -27,7 +27,7 @@ public class ProductController {
 	private ProductServiceImplement productserviceimplement;
 		
 	
-	@RequestMapping(value={"/product"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/product"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllProducts(ProductFilter filter,Paging pagin){
 		Map<String,Object> map = new HashMap<String,Object>();
 		ArrayList<Products> allproduct = new ArrayList<Products>();
@@ -46,7 +46,7 @@ public class ProductController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
-	@RequestMapping(value={"/product"},method = RequestMethod.POST)
+	@RequestMapping(value={"/api/product"},method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveProduct(@RequestBody Products product){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(productserviceimplement.save(product)){
@@ -89,7 +89,7 @@ public class ProductController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}*/
 	
-	@RequestMapping(value={"/product/{id}"},method= RequestMethod.DELETE)
+	@RequestMapping(value={"/api/product/{id}"},method= RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> deleteProductTemporary(@PathVariable("id") int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(productserviceimplement.remove(id)){

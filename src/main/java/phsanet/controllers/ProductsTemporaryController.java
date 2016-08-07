@@ -23,7 +23,7 @@ public class ProductsTemporaryController {
 	@Qualifier("producttemporaryimplement")
 	private ProductTemporaryImplement producttemporaryimplement;
 	
-	@RequestMapping(value={"/producttemporary"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/producttemporary"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllProductsTemporary(){
 		Map<String,Object> map = new HashMap<String,Object>();
 		ArrayList<ProductTemporary> allproduct = new ArrayList<ProductTemporary>();
@@ -39,7 +39,7 @@ public class ProductsTemporaryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/producttemporary/{search}"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/producttemporary/{search}"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchProductsTemporary(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String,Object>();
 		ArrayList<ProductTemporary> allproduct = new ArrayList<ProductTemporary>();
@@ -55,7 +55,7 @@ public class ProductsTemporaryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/producttemporary"},method= RequestMethod.POST)
+	@RequestMapping(value={"/api/producttemporary"},method= RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveProductTemporary(@RequestBody ProductTemporary product){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(producttemporaryimplement.save(product)){
@@ -68,7 +68,7 @@ public class ProductsTemporaryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/producttemporary/{id}"},method= RequestMethod.DELETE)
+	@RequestMapping(value={"/api/producttemporary/{id}"},method= RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> deleteProductTemporary(@PathVariable("id") int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(producttemporaryimplement.remove(id)){
@@ -81,7 +81,7 @@ public class ProductsTemporaryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/producttemporary"},method= RequestMethod.PUT)
+	@RequestMapping(value={"/api/producttemporary"},method= RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateProductTemporary(@RequestBody ProductTemporary product){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(producttemporaryimplement.update(product)){

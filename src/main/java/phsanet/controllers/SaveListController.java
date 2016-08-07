@@ -22,7 +22,7 @@ public class SaveListController {
 	@Autowired
 	@Qualifier("saveListserviceimplement")
 	private SaveListServiceImplement savelistimplement;
-	@RequestMapping(value={"/savelist"},method = RequestMethod.POST)
+	@RequestMapping(value={"/api/savelist"},method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveCategory(@RequestBody SaveList savelist){
 		
 		System.out.println("Userid "+savelist.getUser().getUserid()+" Username "+savelist.getProduct().getProid());
@@ -37,7 +37,7 @@ public class SaveListController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/svaelist"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/svaelist"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllCategory(){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<SaveList> arr = new ArrayList<SaveList>();
@@ -53,7 +53,7 @@ public class SaveListController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/savelist"},method = RequestMethod.PUT)
+	@RequestMapping(value={"/api/savelist"},method = RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateCategory(@RequestBody SaveList savelist){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -67,7 +67,7 @@ public class SaveListController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/savelist/{id}"}, method = RequestMethod.DELETE)
+	@RequestMapping(value={"/api/savelist/{id}"}, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> removeCategory(@PathVariable int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(savelistimplement.remove(id)){

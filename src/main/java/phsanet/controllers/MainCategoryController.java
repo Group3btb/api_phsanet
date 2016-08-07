@@ -22,7 +22,7 @@ public class MainCategoryController {
 	@Qualifier("maincategoryimplement")
 	private MainCategoryServiceImplement mainCategoryServiceImplement;
 	
-	@RequestMapping(value={"/maincategory"} , method = RequestMethod.GET)
+	@RequestMapping(value={"/api/maincategory"} , method = RequestMethod.GET)
 	
 	public ResponseEntity<Map<String,Object>> findAllMainCategory(){
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -39,7 +39,7 @@ public class MainCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/maincategory/{search}"} , method = RequestMethod.GET)
+	@RequestMapping(value={"/api/maincategory/{search}"} , method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchMaincategory(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<MainCategory> main = mainCategoryServiceImplement.search(search);
@@ -55,7 +55,7 @@ public class MainCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/maincategory/{id}"},method = RequestMethod.DELETE)
+	@RequestMapping(value={"/api/maincategory/{id}"},method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> deleteMainCategory(@PathVariable("id") int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		System.out.println("ID "+id);
@@ -69,7 +69,7 @@ public class MainCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/maincategory"} , method= RequestMethod.PUT)
+	@RequestMapping(value={"/api/maincategory"} , method= RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateMainCategory(@RequestBody MainCategory maincate){
 		
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -83,7 +83,7 @@ public class MainCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/maincategory"}, method = RequestMethod.POST)
+	@RequestMapping(value={"/api/maincategory"}, method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveMainCategory(@RequestBody MainCategory maincate){
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(mainCategoryServiceImplement.save(maincate)){

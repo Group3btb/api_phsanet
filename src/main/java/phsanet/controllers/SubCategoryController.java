@@ -24,7 +24,7 @@ public class SubCategoryController {
 	@Qualifier("subcategoryserviceimplement")
 	private SubCategoryServiceImplement subcategory;
 	
-	@RequestMapping(value={"/subcategory"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/subcategory"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllSubCategory(){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<SubCategory> allsub = new ArrayList<SubCategory>();
@@ -40,7 +40,7 @@ public class SubCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/subcategory/{search}"} , method = RequestMethod.GET)
+	@RequestMapping(value={"/api/subcategory/{search}"} , method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findOneSubCategory(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<SubCategory> arr = new ArrayList<SubCategory>();
@@ -56,7 +56,7 @@ public class SubCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/subcategory"} , method = RequestMethod.POST)
+	@RequestMapping(value={"/api/subcategory"} , method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveSubCategory(@RequestBody SubCategory subcate){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(subcategory.save(subcate)){
@@ -69,7 +69,7 @@ public class SubCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/subcategory/{id}"} , method = RequestMethod.DELETE)
+	@RequestMapping(value={"/api/subcategory/{id}"} , method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> removeSubCategory(@PathVariable int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(subcategory.remove(id)){
@@ -82,7 +82,7 @@ public class SubCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/subcategory"},method = RequestMethod.PUT)
+	@RequestMapping(value={"/api/subcategory"},method = RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateSubCategory(@RequestBody SubCategory subcate){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(subcategory.update(subcate)){

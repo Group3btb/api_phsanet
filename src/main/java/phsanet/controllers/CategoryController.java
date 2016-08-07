@@ -24,7 +24,7 @@ public class CategoryController {
 	@Qualifier("categoryimplement")
 	private CategoryImplement categoryimplement;
 	
-	@RequestMapping(value={"/category"},method = RequestMethod.POST)
+	@RequestMapping(value={"/api/category"},method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveCategory(@RequestBody Category category){
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(categoryimplement.save(category)){
@@ -37,7 +37,7 @@ public class CategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/category"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/category"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllCategory(){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<Category> arr = new ArrayList<Category>();
@@ -53,7 +53,7 @@ public class CategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/category"},method = RequestMethod.PUT)
+	@RequestMapping(value={"/api/category"},method = RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateCategory(@RequestBody Category category){
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println(category);
@@ -67,7 +67,7 @@ public class CategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/category/{id}"}, method = RequestMethod.DELETE)
+	@RequestMapping(value={"/api/category/{id}"}, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> removeCategory(@PathVariable int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(categoryimplement.remove(id)){
@@ -80,7 +80,7 @@ public class CategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/category/{search}"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/category/{search}"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchCategory(@PathVariable("search") String search){
 		
 		ArrayList<Category> arr = new ArrayList<Category>();

@@ -24,7 +24,7 @@ public class UserController {
 	private UserServiceImplement userserviceimplement;
 	
 
-	@RequestMapping(value={"/user"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/user"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllSubCategory(){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<User> allsub = new ArrayList<User>();
@@ -40,7 +40,7 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/user/{search}"} , method = RequestMethod.GET)
+	@RequestMapping(value={"/api/user/{search}"} , method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>>searchSubCategory(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<User> arr = new ArrayList<User>();
@@ -56,7 +56,7 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/user"} , method = RequestMethod.POST)
+	@RequestMapping(value={"/api/user"} , method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveSubCategory(@RequestBody User user){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(userserviceimplement.save(user)){
@@ -69,7 +69,7 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/user/{id}"} , method = RequestMethod.DELETE)
+	@RequestMapping(value={"/api/user/{id}"} , method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> removeSubCategory(@PathVariable int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(userserviceimplement.remove(id)){
@@ -82,7 +82,7 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/user"},method = RequestMethod.PUT)
+	@RequestMapping(value={"/api/user"},method = RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateSubCategory(@RequestBody User user){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(userserviceimplement.update(user)){
