@@ -62,7 +62,7 @@ public interface SubCategoryRepository {
 				+ "	FROM (tbcategory cate INNER							 "
 				+ " JOIN tbsubcategory subcate on						 "
 				+ " cate.categoryid = subcate.categoryid)"
-				+ " where subcate.subcategoryname LIKE '%'||#{search}||'%'";
+				+ " where LOWER(subcate.subcategoryname) LIKE '%'||LOWER(#{search})||'%'";
 		
 		String save ="	INSERT INTO 				"
 				+ "	tbsubcategory(categoryid	   ,"

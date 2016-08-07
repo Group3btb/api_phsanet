@@ -68,7 +68,7 @@ public interface ProductTemporaryRepository {
 				String search_product="SELECT  pro.* , sub.* , web.*  FROM "
 						+ " tbtemporary pro INNER JOIN tbsubcategory sub "
 						+ "	ON pro.subcategoryid = sub.subcategoryid "
-						+ "WHERE pro.productname LIKE '%'||#{search}||'%' ";
+						+ "WHERE LOWER(pro.productname) LIKE '%'||LOWER(#{search})||'%' ";
 				
 				String save_product="INSERT INTO tbtemporary "
 						+ "(productname,	"

@@ -77,7 +77,7 @@ public interface MainCategoryRepository {
 		String findall_maincategory="SELECT  *FROM tbmaincategory";
 		
 		String search_maincategory ="select *from tbmaincategory "
-				+ "	where categoryname like '%'||#{search}||'%'  ";
+				+ "	where LOWER(categoryname) like '%'||LOWER(#{search})||'%'  ";
 		
 		String save_maincategory="INSERT INTO "
 				+ "	tbmaincategory	"

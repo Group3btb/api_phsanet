@@ -39,16 +39,18 @@ public class MainCategoryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/maincategory/{id}"} , method = RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> findOneMaincategory(@PathVariable("id")int id){
+	@RequestMapping(value={"/maincategory/{search}"} , method = RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> searchMaincategory(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String, Object>();
-		MainCategory main = mainCategoryServiceImplement.findOne(id);
-		if(main!=null){
-			map.put("MESSAGE","DATA");
-			map.put("STATUS",true);
-		}else{
+		ArrayList<MainCategory> main = mainCategoryServiceImplement.search(search);
+		if(main.isEmpty()){
 			map.put("MESSAGE","DATA NOT FOUND");
 			map.put("STATUS",false);
+			
+		}else{
+			map.put("MESSAGE","DATA FOUND");
+			map.put("STATUS",true);
+			map.put("DATA",main);
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}

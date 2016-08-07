@@ -61,7 +61,7 @@ public interface WebRepository {
 		String findall=" SELECT * FROM tbweb ";
 		
 		String searchlike="SELECT * FROM tbweb "
-				+ "WHERE website LIKE '%'|| #{search} ||'%'";
+				+ "WHERE LOWER(website) LIKE '%'|| LOWER(#{search}) ||'%'";
 		
 		String insertweb="INSERT INTO tbweb("
 				+ "website, "

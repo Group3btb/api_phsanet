@@ -31,11 +31,11 @@ public interface CategoryRepository {
 	
 	@Select(SQL.search_category)
 	@Results({
-		@Result(property="categoryid"				,	column="tbmaincategory.maincatid"),
-		@Result(property="maincategory.maincateid"	,	column="tbcategory.maincatid"),
+		@Result(property="categoryid"				,	column="categoryid"),
+		@Result(property="maincategory.maincateid"	,	column="tbmaincategory.maincatid"),
 		@Result(property="maincategory.maincatename", 	column="maincategory"),
 		@Result(property="maincategory.describe"	, 	column="desc"),
-		@Result(property="categoryname"				, 	column="tbcategory.categoryname"),
+		@Result(property="categoryname"				, 	column="cate"),
 		@Result(property="describe"					, 	column="describe")
 	})
 	public ArrayList<Category> search(String search);
@@ -63,12 +63,15 @@ public interface CategoryRepository {
 				+ "	tbmaincategory.maincatid = tbcategory.maincatid ";
 		
 		String search_category="SELECT tbcategory.*				"
+				+ " , tbcategory.categoryname as cate			"				
 				+ " , tbmaincategory.categoryname				"
 				+ " as maincategory , tbmaincategory.describe	"
 				+ " as desc FROM tbmaincategory INNER JOIN 		"
 				+ "	tbcategory on 								"
 				+ "	tbmaincategory.maincatid = tbcategory.maincatid "
-				+ "	WHERE categoryname LIKE '%'||#{search}||'%' ";
+				+ " WHERE LOWER(tbcategory.categoryname) LIKE '%'||LOWER(#{search})||'%' "
+				
+				;
 		
 		String save_category="INSERT INTO tbcategory"
 				+ "	(maincatid		,"

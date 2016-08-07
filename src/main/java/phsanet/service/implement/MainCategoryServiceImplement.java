@@ -48,7 +48,7 @@ public class MainCategoryServiceImplement implements MainCategoryService {
 	@Override
 	public ArrayList<MainCategory> search(String search) {
 		// TODO Auto-generated method stub
-		return maincategoryrepository.findAll();
+		return maincategoryrepository.search(search);
 	}
 
 }

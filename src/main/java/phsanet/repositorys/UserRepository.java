@@ -49,7 +49,7 @@ public interface UserRepository {
 		
 		String findall= " SELECT *FROM tbuser ";
 		
-		String search =	" SELECT *FROM tbuser WHERE username LIKE '%'||#{search}||'%'";
+		String search =	" SELECT *FROM tbuser WHERE LOWER(username) LIKE '%'||LOWER(#{search})||'%'";
 		
 		String save="	INSERT INTO tbuser(username,password,email) "
 				+ "		VALUES(#{username},#{password},#{email})	";
