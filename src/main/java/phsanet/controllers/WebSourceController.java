@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import phsanet.entitys.Webs;
+import phsanet.entitys.Web_Source;
 import phsanet.service.implement.WebServiceImplement;
 
 @RestController
-public class WebController {
+public class WebSourceController {
 	
 	@Autowired
 	@Qualifier("webserviceimplement")
 	private WebServiceImplement webserviceimplement;
 	@RequestMapping(value={"/api/web"}, method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllWeb(){
-		ArrayList<Webs> allweb = new ArrayList<Webs>();
+		ArrayList<Web_Source> allweb = new ArrayList<Web_Source>();
 		Map<String,Object> map = new HashMap<String, Object>();
 		allweb = webserviceimplement.findAll();
 		if(allweb.isEmpty()){
@@ -40,7 +40,7 @@ public class WebController {
 	}
 	
 	@RequestMapping(value={"/api/web"},method = RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> saveWeb(@RequestBody Webs web){
+	public ResponseEntity<Map<String,Object>> saveWeb(@RequestBody Web_Source web){
 		Map<String,Object> map = new HashMap<String, Object>();
 		System.out.println(web.toString());
 		if(webserviceimplement.save(web)){
@@ -67,7 +67,7 @@ public class WebController {
 	
 	
 	@RequestMapping(value={"/api/web"},method = RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateWeb(@RequestBody Webs web){
+	public ResponseEntity<Map<String,Object>> updateWeb(@RequestBody Web_Source web){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(webserviceimplement.update(web)){
 			map.put("MESSAG","UPDATE SUCCESS");
@@ -82,7 +82,7 @@ public class WebController {
 	@RequestMapping(value={"/api/web/{search}"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchWeb(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String, Object>();
-		ArrayList<Webs> allweb = new ArrayList<Webs>();
+		ArrayList<Web_Source> allweb = new ArrayList<Web_Source>();
 		allweb = webserviceimplement.search(search);
 		if(allweb.isEmpty()){
 			map.put("MESSAGE","SEARCH NOT FOUND");

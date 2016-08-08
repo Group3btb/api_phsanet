@@ -1,21 +1,23 @@
 package phsanet.entitys;
 
-public class ProductTemporary {
+public class Temporary_Item {
 	
 		 // SIM RATHAHAUSONG
-		 private int 			proid;
-		 private SubCategory 	subcategory;
-		 private String 		productname;
-		 private String 		price;
-		 private String 		describe;
-		 private String 		link;
-		 private String 		productimg;
-		 private Webs 			web;
-		public int getProid() {
-			return proid;
+		private int 			product_id;
+		private SubCategory 	subcategory;
+		private String 			product_name;
+		private String 			price;
+		private String 			describe;
+		private String 			link;
+		private String 			product_image;
+		private Web_Source 		web_source;
+		
+			
+		public int getProduct_id() {
+			return product_id;
 		}
-		public void setProid(int proid) {
-			this.proid = proid;
+		public void setProduct_id(int product_id) {
+			this.product_id = product_id;
 		}
 		public SubCategory getSubcategory() {
 			return subcategory;
@@ -23,11 +25,11 @@ public class ProductTemporary {
 		public void setSubcategory(SubCategory subcategory) {
 			this.subcategory = subcategory;
 		}
-		public String getProductname() {
-			return productname;
+		public String getProduct_name() {
+			return product_name;
 		}
-		public void setProductname(String productname) {
-			this.productname = productname;
+		public void setProduct_name(String product_name) {
+			this.product_name = product_name;
 		}
 		public String getPrice() {
 			return price;
@@ -47,17 +49,17 @@ public class ProductTemporary {
 		public void setLink(String link) {
 			this.link = link;
 		}
-		public String getProductimg() {
-			return productimg;
+		public String getProduct_image() {
+			return product_image;
 		}
-		public void setProductimg(String productimg) {
-			this.productimg = productimg;
+		public void setProduct_image(String product_image) {
+			this.product_image = product_image;
 		}
-		public Webs getWeb() {
-			return web;
+		public Web_Source getWeb_source() {
+			return web_source;
 		}
-		public void setWeb(Webs web) {
-			this.web = web;
+		public void setWeb_source(Web_Source web_source) {
+			this.web_source = web_source;
 		}
-		
+	
 }

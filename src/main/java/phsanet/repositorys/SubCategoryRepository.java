@@ -22,23 +22,23 @@ public interface SubCategoryRepository {
 	
 	@Select(SQL.findall)
 	@Results({
-		@Result(property="subcategoryid"			,	column="subcategoryid"),
-		@Result(property="category.categoryid"		, 	column="cateid"),
-		@Result(property="category.categoryname"	,	column="catename"),
-		@Result(property="category.describe"		, 	column="desc"),
-		@Result(property="subcategoryname"			, 	column="subcategoryname"),
-		@Result(property="describe"					, 	column="subcate.describe")
+		@Result(property="subcategory_id"			,	column="sub_id"),
+		@Result(property="subcategory_name"			, 	column="sub_name"),
+		@Result(property="description"				,	column="sub_description"),
+		@Result(property="category.category_id"		, 	column="cate_id"),
+		@Result(property="category.category_name"	, 	column="cate_name"),
+		@Result(property="category.description"	, 	column="cate_description")
 	})
 	public ArrayList<SubCategory> findAll();
 	
 	@Select(SQL.search)
 	@Results({
-		@Result(property="subcategoryid"			,	column="subcategoryid"),
-		@Result(property="category.categoryid"		, 	column="cateid"),
-		@Result(property="category.categoryname"	, 	column="catename"),
-		@Result(property="category.describe"		, 	column="desc"),
-		@Result(property="subcategoryname"			, 	column="subcategoryname"),
-		@Result(property="describe"					, 	column="subcate.describe")
+		@Result(property="subcategory_id"			,	column="sub_id"),
+		@Result(property="subcategory_name"			, 	column="sub_name"),
+		@Result(property="description"				,	column="sub_description"),
+		@Result(property="category.category_id"		, 	column="cate_id"),
+		@Result(property="category.category_name"	, 	column="cate_name"),
+		@Result(property="category.description"		, 	column="cate_description")
 	})
 	public ArrayList<SubCategory> search(String search);
 	
@@ -50,34 +50,43 @@ public interface SubCategoryRepository {
 	
 	
 	interface SQL{
-		String findall="	SELECT subcate.*,cate.categoryid as cateid,		"
-				+ "	cate.categoryname as catename						   ,"
-				+ "	cate.describe as desc 									"
-				+ "	FROM tbcategory cate INNER JOIN tbsubcategory subcate on"
-				+ " cate.categoryid = subcate.categoryid					";
+		String findall="Select "
+				+ "	sub.subcategory_id As sub_id		,"
+				+ " sub.subcategory_name As sub_name 	,"
+				+ " sub.description As sub_description	,"
+				+ "	cate.category_id As cate_id 		,"
+				+ " cate.category_name As cate_name 	,"
+				+ " cate.description As cate_description "
+				+ " From category cate Inner Join   	 "
+				+ "	subcategory sub On cate.category_id	 "
+				+ " = sub.category_id";
 		
-		String search="	SELECT subcate.*,cate.categoryid as cateid		,"
-				+ "	cate.categoryname as catename						,"
-				+ "	cate.describe as desc 								 "
-				+ "	FROM (tbcategory cate INNER							 "
-				+ " JOIN tbsubcategory subcate on						 "
-				+ " cate.categoryid = subcate.categoryid)"
-				+ " where LOWER(subcate.subcategoryname) LIKE '%'||LOWER(#{search})||'%'";
+		String search="Select "
+				+ "	sub.subcategory_id As sub_id		,"
+				+ " sub.subcategory_name As sub_name 	,"
+				+ " sub.description As sub_description	,"
+				+ "	cate.category_id As cate_id 		,"
+				+ " cate.category_name As cate_name 	,"
+				+ " cate.description As cate_description "
+				+ " From category cate Inner Join   	 "
+				+ "	subcategory sub On cate.category_id	 "
+				+ " = sub.category_id 					 "
+				+ " Where Lower(sub.subcategory_name) Like '%'|| Lower(#{search}) ||'%'";
 		
-		String save ="	INSERT INTO 				"
-				+ "	tbsubcategory(categoryid	   ,"
-				+ "	subcategoryname,describe)		"
-				+ " VALUES(#{category.categoryid}  ,"
-				+ "	#{subcategoryname}			   ,"
-				+ "	#{describe})				    ";
+		String save ="	Insert Into 				"
+				+ "	subcategory(category_id	   ,"
+				+ "	subcategory_name,description)	"
+				+ " Values(#{category.category_id}  ,"
+				+ "	#{subcategory_name}			   ,"
+				+ "	#{description})				    ";
 		
-		String remove="DELETE FROM tbsubcategory WHERE subcategoryid=#{id}";
+		String remove="DELETE FROM subcategory WHERE subcategory_id=#{id}";
 		
-		String update="UPDATE tbsubcategory					"
-				+ "SET categoryid=#{category.categoryid}   ,"
-				+ " subcategoryname=#{subcategoryname}     ,"
-				+ "describe =#{describe} 					"
-				+ "where subcategoryid =#{subcategoryid}	";
+		String update="Update subcategory					"
+				+ "SET category_id=#{category.category_id}   ,"
+				+ " subcategory_name=#{subcategory_name}     ,"
+				+ "description =#{description} 					"
+				+ "where subcategory_id =#{subcategory_id}	";
 	}
 	
 }

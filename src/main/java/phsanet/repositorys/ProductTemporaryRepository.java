@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import phsanet.entitys.ProductTemporary;
+import phsanet.entitys.Temporary_Item;
 
 @Repository
 @Qualifier("proudcttemporaryrepository")
@@ -30,7 +30,7 @@ public interface ProductTemporaryRepository {
 		@Result(property="web.logo",					column="logo")
 		
 	})
-	public ArrayList<ProductTemporary> findAll();
+	public ArrayList<Temporary_Item> findAll();
 	
 	@Select(SQL.search_product)
 	@Results({
@@ -46,13 +46,13 @@ public interface ProductTemporaryRepository {
 		@Result(property="web.logo",					column="logo")
 		
 	})
-	public ArrayList<ProductTemporary> search(String search);
+	public ArrayList<Temporary_Item> search(String search);
 	
 	@Insert(SQL.save_product)
-	public boolean save(ProductTemporary product);
+	public boolean save(Temporary_Item product);
 	
 	@Update(SQL.update_product)
-	public boolean update(ProductTemporary product);
+	public boolean update(Temporary_Item product);
 	
 	@Delete(SQL.remove_product)
 	public boolean remove(int id);

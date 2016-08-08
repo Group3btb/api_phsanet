@@ -19,8 +19,8 @@ public interface UserRepository {
 	
 	@Select(SQL.findall)
 	@Results({
-		@Result(property="userid"		,	column="userid"),
-		@Result(property="username"		,	column="username"),
+		@Result(property="user_id"		,	column="user_id"),
+		@Result(property="user_name"	,	column="user_name"),
 		@Result(property="password"		,	column="password"),
 		@Result(property="email"		,	column="email")
 	})
@@ -28,8 +28,8 @@ public interface UserRepository {
 	
 	@Select(SQL.search)
 	@Results({
-		@Result(property="userid"		,	column="userid"),
-		@Result(property="username"		,	column="username"),
+		@Result(property="user_id"		,	column="user_id"),
+		@Result(property="user_name"	,	column="user_name"),
 		@Result(property="password"		,	column="password"),
 		@Result(property="email"		,	column="email")
 	})
@@ -47,19 +47,19 @@ public interface UserRepository {
 	
 	interface SQL{
 		
-		String findall= " SELECT *FROM tbuser ";
+		String findall= " Select * From user_phsanet ";
 		
-		String search =	" SELECT *FROM tbuser WHERE LOWER(username) LIKE '%'||LOWER(#{search})||'%'";
+		String search =	" Select * From user_phsanet Where Lower(user_name) Like '%'||Lower(#{search})||'%'";
 		
-		String save="	INSERT INTO tbuser(username,password,email) "
-				+ "		VALUES(#{username},#{password},#{email})	";
+		String save="	Insert Into user_phsanet (user_name,password,email)  "
+				+ "		Values(#{user_name},#{password},#{email})	 ";
 		
-		String update="	UPDATE tbuser SET"
-				+ " username=#{username} ,"
-				+ " password=#{password}  "
-				+ " WHERE userid=#{userid}";
+		String update="	Update user_phsanet SET		 "
+				+ " user_name=#{user_name} 	,"
+				+ " password=#{password}  	 "
+				+ " Where user_id=#{user_id} ";
 		
-		String remove ="DELETE FROM tbuser WHERE userid=#{userid}";
+		String remove ="Delete From user_phsanet Where user_id=#{user_id}";
 	}
 	
 }

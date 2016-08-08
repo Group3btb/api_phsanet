@@ -1,14 +1,14 @@
 package phsanet.entitys;
 
-public class SaveList {
-	private int listid;
+public class Save_List {
+	private int list_id;
 	private Products product;
 	private User user;
-	public int getListid() {
-		return listid;
+	public int getList_id() {
+		return list_id;
 	}
-	public void setListid(int listid) {
-		this.listid = listid;
+	public void setList_id(int list_id) {
+		this.list_id = list_id;
 	}
 	public Products getProduct() {
 		return product;
@@ -22,4 +22,5 @@ public class SaveList {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
 }

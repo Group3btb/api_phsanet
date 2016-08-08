@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import phsanet.entitys.Webs;
+import phsanet.entitys.Web_Source;
 import phsanet.repositorys.WebRepository;
 import phsanet.services.WebService;
 
@@ -17,7 +17,7 @@ public class WebServiceImplement implements WebService {
 	@Qualifier("webrepository")
 	private WebRepository webrepository;
 	@Override
-	public boolean save(Webs web) {
+	public boolean save(Web_Source web) {
 		// TODO Auto-generated method stub
 		return webrepository.save(web);
 	}
@@ -29,19 +29,19 @@ public class WebServiceImplement implements WebService {
 	}
 
 	@Override
-	public boolean update(Webs web) {
+	public boolean update(Web_Source web) {
 		// TODO Auto-generated method stub
 		return webrepository.update(web);
 	}
 
 	@Override
-	public ArrayList<Webs> findAll() {
+	public ArrayList<Web_Source> findAll() {
 		// TODO Auto-generated method stub
 		return webrepository.findAll();
 	}
 
 	@Override
-	public ArrayList<Webs> search(String search) {
+	public ArrayList<Web_Source> search(String search) {
 		// TODO Auto-generated method stub
 		return webrepository.search(search);
 	}

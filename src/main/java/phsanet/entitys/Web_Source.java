@@ -1,21 +1,21 @@
 package phsanet.entitys;
 
-public class Webs {
+public class Web_Source {
 	
-	private int webid;
-	private String website;
-	private String logo;
-	private String status;
-	private String selectorrow;
-	private String selectorname;
-	private String selectorprice;
-	private String selectorimg;
-	private String selectordescribe;
-	public int getWebid() {
-		return webid;
+	private int 		web_source_id;
+	private String 		website;
+	private String 		logo;
+	private String 		status;
+	private String 		selector_row;
+	private String 		selector_name;
+	private String 		selector_price;
+	private String 		selector_image;
+	private String 		selector_description;
+	public int getWeb_source_id() {
+		return web_source_id;
 	}
-	public void setWebid(int webid) {
-		this.webid = webid;
+	public void setWeb_source_id(int web_source_id) {
+		this.web_source_id = web_source_id;
 	}
 	public String getWebsite() {
 		return website;
@@ -35,35 +35,36 @@ public class Webs {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getSelectorrow() {
-		return selectorrow;
+	public String getSelector_row() {
+		return selector_row;
 	}
-	public void setSelectorrow(String selectorrow) {
-		this.selectorrow = selectorrow;
+	public void setSelector_row(String selector_row) {
+		this.selector_row = selector_row;
 	}
-	public String getSelectorname() {
-		return selectorname;
+	public String getSelector_name() {
+		return selector_name;
 	}
-	public void setSelectorname(String selectorname) {
-		this.selectorname = selectorname;
+	public void setSelector_name(String selector_name) {
+		this.selector_name = selector_name;
 	}
-	public String getSelectorprice() {
-		return selectorprice;
+	public String getSelector_price() {
+		return selector_price;
 	}
-	public void setSelectorprice(String selectorprice) {
-		this.selectorprice = selectorprice;
+	public void setSelector_price(String selector_price) {
+		this.selector_price = selector_price;
 	}
-	public String getSelectorimg() {
-		return selectorimg;
+	public String getSelector_image() {
+		return selector_image;
 	}
-	public void setSelectorimg(String selectorimg) {
-		this.selectorimg = selectorimg;
+	public void setSelector_image(String selector_image) {
+		this.selector_image = selector_image;
 	}
-	public String getSelectordescribe() {
-		return selectordescribe;
+	
+	public String getSelector_description() {
+		return selector_description;
 	}
-	public void setSelectordescribe(String selectordescribe) {
-		this.selectordescribe = selectordescribe;
+	public void setSelector_description(String selector_description) {
+		this.selector_description = selector_description;
 	}
 	
 }

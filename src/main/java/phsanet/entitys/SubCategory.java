@@ -1,42 +1,35 @@
 package phsanet.entitys;
 
 public class SubCategory {
-	private int subcategoryid;
-	private String subcategoryname;
-	private String describe;
-	private Category category;
+	private int 		subcategory_id;
+	private String 		subcategory_name;
+	private String 		description;
+	private Category 	category;
 	
-	public SubCategory(){
-		
+	public int getSubcategory_id() {
+		return subcategory_id;
 	}
-	public SubCategory(int subcategoryid,int categoryid, String subcategoryname,String describe){
-		this.subcategoryid = subcategoryid;
-		this.subcategoryname = subcategoryname;
-		this.describe = describe;
+	public void setSubcategory_id(int subcategory_id) {
+		this.subcategory_id = subcategory_id;
 	}
-	public int getSubcategoryid() {
-		return subcategoryid;
+	public String getSubcategory_name() {
+		return subcategory_name;
 	}
-	public void setSubcategoryid(int subcategoryid) {
-		this.subcategoryid = subcategoryid;
+	public void setSubcategory_name(String subcategory_name) {
+		this.subcategory_name = subcategory_name;
 	}
-	public String getSubcategoryname() {
-		return subcategoryname;
-	}
-	public void setSubcategoryname(String subcategoryname) {
-		this.subcategoryname = subcategoryname;
-	}
-	public String getDescribe() {
-		return describe;
-	}
-	public void setDescribe(String describe) {
-		this.describe = describe;
-	}
+	
 	public Category getCategory() {
 		return category;
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

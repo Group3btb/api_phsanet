@@ -2,12 +2,12 @@ package phsanet.services;
 
 import java.util.ArrayList;
 
-import phsanet.entitys.Webs;
+import phsanet.entitys.Web_Source;
 
 public interface WebService {
-	public boolean save(Webs web);
+	public boolean save(Web_Source web);
 	public boolean remove(int id);
-	public boolean update(Webs web);
-	public ArrayList<Webs> findAll();
-	public ArrayList<Webs> search(String search);
+	public boolean update(Web_Source web);
+	public ArrayList<Web_Source> findAll();
+	public ArrayList<Web_Source> search(String search);
 }

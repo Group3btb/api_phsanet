@@ -1,16 +1,22 @@
 package phsanet.entitys;
 
 public class User {
-	private int userid;
-	private String username;
-	private String password;
-	private String email;
+	private int 		user_id;
+	private String 		user_name;
+	private String 		password;
+	private String 		email;
 	
-	public String getUsername() {
-		return username;
+	public int getUser_id() {
+		return user_id;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 	public String getPassword() {
 		return password;
@@ -23,11 +29,5 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public int getUserid() {
-		return userid;
-	}
-	public void setUserid(int userid) {
-		this.userid = userid;
 	}
 }

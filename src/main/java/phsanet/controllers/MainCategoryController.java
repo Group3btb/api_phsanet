@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import phsanet.entitys.MainCategory;
+import phsanet.entitys.Main_Category;
 import phsanet.service.implement.MainCategoryServiceImplement;
 
 @RestController
@@ -26,7 +26,7 @@ public class MainCategoryController {
 	
 	public ResponseEntity<Map<String,Object>> findAllMainCategory(){
 		Map<String,Object> map = new HashMap<String, Object>();
-		ArrayList<MainCategory> maincate = new ArrayList<MainCategory>();
+		ArrayList<Main_Category> maincate = new ArrayList<Main_Category>();
 		maincate = mainCategoryServiceImplement.findAll();
 		if(maincate.isEmpty()){
 			map.put("MESSAGE","DATA NOT FOUND");
@@ -34,7 +34,7 @@ public class MainCategoryController {
 		}else{
 			map.put("MESSAGE","DATA FOUND");
 			map.put("STATUS",true);
-			map.put("RES_DATA",maincate);
+			map.put("DATA",maincate);
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
@@ -42,7 +42,7 @@ public class MainCategoryController {
 	@RequestMapping(value={"/api/maincategory/{search}"} , method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchMaincategory(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String, Object>();
-		ArrayList<MainCategory> main = mainCategoryServiceImplement.search(search);
+		ArrayList<Main_Category> main = mainCategoryServiceImplement.search(search);
 		if(main.isEmpty()){
 			map.put("MESSAGE","DATA NOT FOUND");
 			map.put("STATUS",false);
@@ -70,7 +70,7 @@ public class MainCategoryController {
 	}
 	
 	@RequestMapping(value={"/api/maincategory"} , method= RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateMainCategory(@RequestBody MainCategory maincate){
+	public ResponseEntity<Map<String,Object>> updateMainCategory(@RequestBody Main_Category maincate){
 		
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(mainCategoryServiceImplement.update(maincate)){
@@ -84,7 +84,7 @@ public class MainCategoryController {
 	}
 	
 	@RequestMapping(value={"/api/maincategory"}, method = RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> saveMainCategory(@RequestBody MainCategory maincate){
+	public ResponseEntity<Map<String,Object>> saveMainCategory(@RequestBody Main_Category maincate){
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(mainCategoryServiceImplement.save(maincate)){
 			map.put("MESSAGE","SUCCESS");

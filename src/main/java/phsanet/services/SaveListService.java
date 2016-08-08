@@ -2,11 +2,11 @@ package phsanet.services;
 
 import java.util.ArrayList;
 
-import phsanet.entitys.SaveList;
+import phsanet.entitys.Save_List;
 
 public interface SaveListService {
-	public boolean save(SaveList savelist);
-	public boolean update(SaveList savelist);
+	public boolean save(Save_List savelist);
+	public boolean update(Save_List savelist);
 	public boolean remove(int id);
-	public ArrayList<SaveList> findAll();
+	public ArrayList<Save_List> findAll();
 }

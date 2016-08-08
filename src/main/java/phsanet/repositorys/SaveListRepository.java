@@ -11,72 +11,79 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import phsanet.entitys.SaveList;
+import phsanet.entitys.Save_List;
 
 @Repository
 @Qualifier("saveListrepository")
 public interface SaveListRepository {
 	
 	@Insert(SQL.save)
-	public boolean save(SaveList savelist);
+	public boolean save(Save_List savelist);
 	
 	@Update(SQL.update)
-	public boolean update(SaveList savelist);
+	public boolean update(Save_List savelist);
 	
 	@Delete(SQL.remove)
 	public boolean delete(int id);
 	
 	@Select(SQL.search)
 	@Results({
-		@Result(property="listid"				, 	column="listid"),
-		@Result(property="product.productname"	,	column="productname"),
-		@Result(property="product.productimg"	,	column="productimg"),
+		@Result(property="list_id"				, 	column="list_id"),
+		@Result(property="product.product_name"	,	column="product_name"),
+		@Result(property="product.product_image",	column="product_image"),
 		@Result(property="product.web.logo" 	, 	column="logo")
 	})
-	public ArrayList<SaveList> search(String search);
+	public ArrayList<Save_List> search(String search);
 	
 	@Select(SQL.findall)
 	@Results({
-		@Result(property="listid"				, 	column="listid"),
-		@Result(property="product.productname"	,	column="productname"),
-		@Result(property="product.productimg"	,	column="productimg"),
+		@Result(property="list_id"				, 	column="list_id"),
+		@Result(property="product.product_name"	,	column="product_name"),
+		@Result(property="product.product_image",	column="product_image"),
 		@Result(property="product.web.logo" 	, 	column="logo")
 	})
-	public ArrayList<SaveList> findAll();
+	public ArrayList<Save_List> findAll();
 	
 	interface SQL{
 		
-		String findall="SELECT listid , productname , productimg , logo "
-				+ "	FROM tbuser 						"
-				+ "	u INNER JOIN						"
-				+ " tbsavelist save						"
-				+ " on u.userid = save.userid 			"
-				+ "	INNER JOIN tbproduct pro on 		"
-				+ "	save.proid = pro.proid INNER JOIN	"
-				+ " tbweb web on web.linkid = pro.linkid";
+		String findall="	Select 									"
+				+ " 	product_name 							   ,"
+				+ " 	product_image 							   ,"
+				+ " 	website									   ,"
+				+ " 	logo									    "
+				+ "		From user_phsanet u                         "
+				+ "I	nner Join save_list							"
+				+ " 	save On u.user_id = save.user_id		    "
+				+ "		Inner Join product pro					    "
+				+ "		On save.product_id = pro.product_idInner	"
+				+ "		Join web_source web						    "
+				+ "		On web.web_source_id = pro.web_source_id	";
 		
-		String search="SELECT listid , productname , productimg , logo "
-				+ "	FROM tbuser 						"
-				+ "	u INNER JOIN						"
-				+ " tbsavelist save						"
-				+ " on u.userid = save.userid 			"
-				+ "	INNER JOIN tbproduct pro on 		"
-				+ "	save.proid = pro.proid INNER JOIN	"
-				+ " tbweb web on web.linkid = pro.linkid"
-				+ "	WHERE productname LIKE '%'||#{search}||'%'";
-		
-		String save="INSERT INTO tbsavelist(userid,proid)"
+		String search="	Select 									"
+				+ " 	product_name 							   ,"
+				+ " 	product_image 							   ,"
+				+ " 	website									   ,"
+				+ " 	logo									    "
+				+ "		From user_phsanet u                         "
+				+ "I	nner Join save_list							"
+				+ " 	save On u.user_id = save.user_id		    "
+				+ "		Inner Join product pro					    "
+				+ "		On save.product_id = pro.product_idInner	"
+				+ "		Join web_source web						    "
+				+ "		On web.web_source_id = pro.web_source_id	"
+				+ "		Where product_name Like '%'||Lower(#{search}||'%')";
+		String save="Insert Into save_list(user_id,product_id)"
 				+ " VALUES(			 "
-				+ "	#{user.userid},	 "
-				+ "	#{product.proid})";
+				+ "	#{user.user_id},	 "
+				+ "	#{product.product_id})";
 		
-		String update="UPDATE tbsavelist 	"
+		String update="Update save_list 	"
 				+ "	SET 					"
-				+ "	userid=#{user.userid}  ,"
-				+ " proid=#{product.proid} 	"
-				+ "	WHERE listid=#{listid}	";
+				+ "	user_id=#{user.user_id}  ,"
+				+ " product_id=#{product.product_id} 	"
+				+ "	Where listid=#{list_id}	";
 		
-		String remove="DELETE FROM tbsavelist WHERE listid=#{listid}";
+		String remove="Delete From save_list Where list_id=#{id}";
 	}
 	
 }

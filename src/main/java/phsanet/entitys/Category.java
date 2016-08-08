@@ -1,53 +1,49 @@
 package phsanet.entitys;
 
 public class Category {
-	private int categoryid;
-	private String categoryname;
-	
-	private MainCategory maincategory;
-	
-	public Category(){
-		
-	}
-	public Category(int categoryid,int maincategoryid,String categoryname,String describe){
-		this.categoryid = categoryid;
-		this.categoryname = categoryname;
-		this.describe = describe;
-	}
-	
-	public int getCategoryid() {
-		return categoryid;
-	}
-	public void setCategoryid(int categoryid) {
-		this.categoryid = categoryid;
-	}
+	private int 			category_id;
+	private String 			category_name;
+	private Main_Category 	main_category;
+	private String 			description;
 
-	public String getCategoryname() {
-		return categoryname;
-	}
-	public void setCategoryname(String categoryname) {
-		this.categoryname = categoryname;
-	}
-	public String getDescribe() {
-		return describe;
-	}
-	public void setDescribe(String describe) {
-		this.describe = describe;
-	}
-
-	private String describe;
 	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.categoryid +" "+ maincategory.getMaincateid()+" "+categoryname +" "+describe;
+		return this.category_id +" "+" "+category_name +" "+description;
+	}
+	
+	public String getDescription() {
+		return description;
 	}
 
-	public MainCategory getMaincategory() {
-		return maincategory;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getCategory_name() {
+		return category_name;
 	}
 
-	public void setMaincategory(MainCategory maincategory) {
-		this.maincategory = maincategory;
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
 	}
+	
+	public int getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+	
+	public Main_Category getMain_category() {
+		return main_category;
+	}
+
+	public void setMain_category(Main_Category main_category) {
+		this.main_category = main_category;
+	}
+
 }

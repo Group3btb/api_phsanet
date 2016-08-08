@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import phsanet.entitys.SaveList;
+import phsanet.entitys.Save_List;
 import phsanet.service.implement.SaveListServiceImplement;
 
 @RestController
@@ -23,9 +23,8 @@ public class SaveListController {
 	@Qualifier("saveListserviceimplement")
 	private SaveListServiceImplement savelistimplement;
 	@RequestMapping(value={"/api/savelist"},method = RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> saveCategory(@RequestBody SaveList savelist){
+	public ResponseEntity<Map<String,Object>> saveCategory(@RequestBody Save_List savelist){
 		
-		System.out.println("Userid "+savelist.getUser().getUserid()+" Username "+savelist.getProduct().getProid());
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(savelistimplement.save(savelist)){
 			map.put("MESSAG","SUCCESS");
@@ -40,7 +39,7 @@ public class SaveListController {
 	@RequestMapping(value={"/api/svaelist"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllCategory(){
 		Map<String,Object> map = new HashMap<String, Object>();
-		ArrayList<SaveList> arr = new ArrayList<SaveList>();
+		ArrayList<Save_List> arr = new ArrayList<Save_List>();
 		arr = savelistimplement.findAll();
 		if(arr.isEmpty()){
 			map.put("MESSAG","DATA NOT FOUND");
@@ -54,7 +53,7 @@ public class SaveListController {
 	}
 	
 	@RequestMapping(value={"/api/savelist"},method = RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateCategory(@RequestBody SaveList savelist){
+	public ResponseEntity<Map<String,Object>> updateCategory(@RequestBody Save_List savelist){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if(savelistimplement.update(savelist)){

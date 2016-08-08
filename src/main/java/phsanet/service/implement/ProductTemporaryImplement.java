@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import phsanet.entitys.ProductTemporary;
+import phsanet.entitys.Temporary_Item;
 import phsanet.repositorys.ProductTemporaryRepository;
 import phsanet.services.ProductTemporaryService;
 
@@ -18,7 +18,7 @@ public class ProductTemporaryImplement implements ProductTemporaryService {
 	@Qualifier("proudcttemporaryrepository")
 	private ProductTemporaryRepository producttemporaryrepository;
 	@Override
-	public boolean save(ProductTemporary product) {
+	public boolean save(Temporary_Item product) {
 		// TODO Auto-generated method stub
 		return producttemporaryrepository.save(product);
 	}
@@ -30,19 +30,19 @@ public class ProductTemporaryImplement implements ProductTemporaryService {
 	}
 
 	@Override
-	public boolean update(ProductTemporary product) {
+	public boolean update(Temporary_Item product) {
 		// TODO Auto-generated method stub
 		return producttemporaryrepository.update(product);
 	}
 
 	@Override
-	public ArrayList<ProductTemporary> findAll() {
+	public ArrayList<Temporary_Item> findAll() {
 		// TODO Auto-generated method stub
 		return producttemporaryrepository.findAll();
 	}
 
 	@Override
-	public ArrayList<ProductTemporary> search(String search) {
+	public ArrayList<Temporary_Item> search(String search) {
 		return producttemporaryrepository.search(search);
 	}
 

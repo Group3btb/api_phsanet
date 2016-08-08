@@ -19,24 +19,27 @@ public interface CategoryRepository {
 	@Select(SQL.findall_category)
 	@Results({
 		
-		@Result(property="categoryid"				,	column="categoryid"),
-		@Result(property="maincategory.maincateid"	, 	column="maincategoryid"),
-		@Result(property="maincategory.maincatename", 	column="maincategory"),
-		@Result(property="maincategory.describe"	, 	column="desc"),
-		@Result(property="categoryname"				,	column="tbcategory.categoryname"),
-		@Result(property="describe"					, 	column="describe")
+		@Result(property="category_id"					,	column="cate_id"),
+		@Result(property="main_category.maincategory_id", 	column="main_id"),
+		@Result(property="main_category.category_name"	, 	column="main_name"),
+		@Result(property="main_category.description"	, 	column="main_description"),
+		@Result(property="category_name"				,	column="cate_name"),
+		@Result(property="description"					, 	column="cate_description")
+		
 		
 	})
 	public ArrayList<Category> findALL();
 	
 	@Select(SQL.search_category)
 	@Results({
-		@Result(property="categoryid"				,	column="categoryid"),
-		@Result(property="maincategory.maincateid"	,	column="tbmaincategory.maincatid"),
-		@Result(property="maincategory.maincatename", 	column="maincategory"),
-		@Result(property="maincategory.describe"	, 	column="desc"),
-		@Result(property="categoryname"				, 	column="cate"),
-		@Result(property="describe"					, 	column="describe")
+		
+		@Result(property="category_id"					,	column="cate_id"),
+		@Result(property="main_category.maincategory_id", 	column="main_id"),
+		@Result(property="main_category.category_name"	, 	column="main_name"),
+		@Result(property="main_category.description"	, 	column="main_description"),
+		@Result(property="category_name"				,	column="cate_name"),
+		@Result(property="description"					, 	column="cate_description")
+		
 	})
 	public ArrayList<Category> search(String search);
 	
@@ -50,45 +53,47 @@ public interface CategoryRepository {
 	public boolean remove(int id);
 	
 	
-	interface SQL{
+	interface SQL{ 
 		
-		String findall_category="SELECT tbcategory.* , "
-				+ "	tbcategory.maincatid			"
-				+ " as maincategoryid,				"
-				+ " tbmaincategory.categoryname as 	"
-				+ "	maincategory ,					"
-				+ " tbmaincategory.describe as 		"
-				+ "	desc FROM 						"
-				+ "	tbmaincategory INNER JOIN tbcategory on 		"
-				+ "	tbmaincategory.maincatid = tbcategory.maincatid ";
+		String findall_category="	Select "
+				+ " main.maincategory_id As main_id			,"
+				+ " main.category_name As main_name 		,"
+				+ " main.description As main_description	,"
+				+ " cate.category_id As cate_id 			,"
+				+ " cate.category_name As cate_name			,"
+				+ "	cate.description As cate_description	 "
+				+ " FROM main_category main INNER 		 	 "
+				+ " JOIN category cate ON 				 	 "
+				+ " main.maincategory_id = cate.maincategory_id";
 		
-		String search_category="SELECT tbcategory.*				"
-				+ " , tbcategory.categoryname as cate			"				
-				+ " , tbmaincategory.categoryname				"
-				+ " as maincategory , tbmaincategory.describe	"
-				+ " as desc FROM tbmaincategory INNER JOIN 		"
-				+ "	tbcategory on 								"
-				+ "	tbmaincategory.maincatid = tbcategory.maincatid "
-				+ " WHERE LOWER(tbcategory.categoryname) LIKE '%'||LOWER(#{search})||'%' "
-				
-				;
+		String search_category="	Select "
+				+ " main.maincategory_id As main_id			,"
+				+ " main.category_name As main_name 		,"
+				+ " main.description As main_description	,"
+				+ " cate.category_id As cate_id 			,"
+				+ " cate.category_name As cate_name			,"
+				+ "	cate.description As cate_description	 "
+				+ " From main_category main Inner 		 	 "
+				+ " Join category cate On 				 	 "
+				+ " main.maincategory_id = cate.maincategory_id"
+				+ " Where Lower(cate.category_name) Like '%'||Lower(#{search})||'%' ";
 		
-		String save_category="INSERT INTO tbcategory"
-				+ "	(maincatid		,"
-				+ "	categoryname	,"
-				+ "	describe)		 "
-				+ " VALUES(#{maincategory.maincateid},"
-				+ "	#{categoryname}	,"
-				+ "	#{describe})	 ";
+		String save_category="Insert Into category"
+				+ "	(maincategory_id			 ,"
+				+ "	category_name				 ,"
+				+ "	description)		 		  "
+				+ " VALUES(#{main_category.maincategory_id},"
+				+ "	#{category_name}	,"
+				+ "	#{description})	 ";
 		
-		String update_category="UPDATE tbcategory"
-				+ " 	set 								"
-				+ "		maincatid=#{maincategory.maincateid}"
-				+ " 	,categoryname=#{categoryname} 		"
-				+ "		,describe=#{describe}				"
-				+ " 	where categoryid=#{categoryid}		";
+		String update_category="Update category"
+				+ " 	Set 								"
+				+ "		maincategory_id=#{main_category.maincategory_id}"
+				+ " 	,category_name=#{category_name} 		"
+				+ "		,description=#{description}				"
+				+ " 	where category_id=#{category_id}		";
 		
-		String remove_category="DELETE FROM tbcategory where categoryid=#{id}";
+		String remove_category="Delete From category where category_id=#{id}";
 	}
 	
 	

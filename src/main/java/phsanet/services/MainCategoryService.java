@@ -2,16 +2,16 @@ package phsanet.services;
 
 import java.util.ArrayList;
 
-import phsanet.entitys.MainCategory;
+import phsanet.entitys.Main_Category;
 
 public interface MainCategoryService {
 	
 	
-	public ArrayList<MainCategory> findAll();
-	public boolean save(MainCategory maincate);
-	public boolean update(MainCategory maincate);
+	public ArrayList<Main_Category> findAll();
+	public boolean save(Main_Category maincate);
+	public boolean update(Main_Category maincate);
 	public boolean remove(int id);
-	public MainCategory findOne(int id);
-	public ArrayList<MainCategory> search(String search);
+	public Main_Category findOne(int id);
+	public ArrayList<Main_Category> search(String search);
 	
 }

@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import phsanet.entitys.Webs;
+import phsanet.entitys.Web_Source;
 // SIM RATHAHAUSONG 
 @Repository
 @Qualifier("webrepository")
@@ -19,81 +19,81 @@ public interface WebRepository {
 	
 	@Select(SQL.findall)
 	@Results({
-		@Result(property="webid"			, column="webid"),
-		@Result(property="website" 			, column="website"),
-		@Result(property="logo" 			, column="logo"),
-		@Result(property="status"			, column="status"),
-		@Result(property="selectorrow"		, column="selectorrow"),
-		@Result(property="selectorname" 	, column="selectorname"),
-		@Result(property="selectorprice"	, column="selectorprice"),
-		@Result(property="selectorimg" 		, column="selectorimg"),
-		@Result(property="selectordescribe"	, column="selectordescribe")
+		@Result(property="web_source_id"		, column="web_resource_id"),
+		@Result(property="website" 				, column="website"),
+		@Result(property="logo" 				, column="logo"),
+		@Result(property="status"				, column="status"),
+		@Result(property="selector_row"			, column="selector_row"),
+		@Result(property="selector_name" 		, column="selector_name"),
+		@Result(property="selector_price"		, column="selector_price"),
+		@Result(property="selector_image" 		, column="selector_image"),
+		@Result(property="selector_description"	, column="selector_description")
 	})
-	public ArrayList<Webs> findAll();
+	public ArrayList<Web_Source> findAll();
 	
 	@Select(SQL.searchlike)
 	@Results({
 		
-		@Result(property="webid"			, column="webid"),
-		@Result(property="website" 			, column="website"),
-		@Result(property="logo" 			, column="logo"),
-		@Result(property="status"			, column="status"),
-		@Result(property="selectorrow"		, column="selectorrow"),
-		@Result(property="selectorname" 	, column="selectorname"),
-		@Result(property="selectorprice"	, column="selectorprice"),
-		@Result(property="selectorimg" 		, column="selectorimg"),
-		@Result(property="selectordescribe"	, column="selectordescribe")
+		@Result(property="web_source_id"		, column="web_resource_id"),
+		@Result(property="website" 				, column="website"),
+		@Result(property="logo" 				, column="logo"),
+		@Result(property="status"				, column="status"),
+		@Result(property="selector_row"			, column="selector_row"),
+		@Result(property="selector_name" 		, column="selector_name"),
+		@Result(property="selector_price"		, column="selector_price"),
+		@Result(property="selector_image" 		, column="selector_image"),
+		@Result(property="selector_description"	, column="selector_description")
 	})
-	public ArrayList<Webs> search(String search);
+	public ArrayList<Web_Source> search(String search);
 	
 	@Insert(SQL.insertweb)
-	public boolean save(Webs web);
+	public boolean save(Web_Source web);
 	
 	@Delete(SQL.deleteweb)
 	public boolean remove(int id);
 	
 	@Update(SQL.updateweb)
-	public boolean update(Webs web);
+	public boolean update(Web_Source web);
 	
 	
 	interface SQL{
 		
-		String findall=" SELECT * FROM tbweb ";
+		String findall=" Select * From web_source ";
 		
-		String searchlike="SELECT * FROM tbweb "
-				+ "WHERE LOWER(website) LIKE '%'|| LOWER(#{search}) ||'%'";
+		String searchlike="Select * FROM web_source "
+				+ "Where Lower(website) Like '%'|| Lower(#{search}) ||'%'";
 		
-		String insertweb="INSERT INTO tbweb("
+		String insertweb="	Insert Into web_source("
 				+ "website, "
 				+ "logo, "
 				+ "status, "
-				+ "selectorrow, "
-				+ "selectorname, "
-				+ "selectorprice, "
-				+ "selectorimg, "
-				+ "selectordescribe) "
-				+ "VALUES("
+				+ "selector_row, "
+				+ "selector_name, "
+				+ "selector_price, "
+				+ "selector_image, "
+				+ "selector_description) "
+				+ "Values("
 				+ "#{website}, "
 				+ "#{logo}, "
 				+ "#{status}, "
-				+ "#{selectorrow}, "
-				+ "#{selectorname},"
-				+ "#{selectorprice}, "
-				+ "#{selectorimg}, "
-				+ "#{selectordescribe})";
+				+ "#{selector_row}, "
+				+ "#{selector_name},"
+				+ "#{selector_price}, "
+				+ "#{selector_image}, "
+				+ "#{selector_description})";
 		
-		String updateweb="UPDATE tbweb SET "
+		String updateweb="Update web_source Set "
 				+ "website=#{website}, "
 				+ "logo=#{logo}, "
 				+ "status=#{status},"
-				+ "selectorrow=#{selectorrow},"
-				+ "selectorname=#{selectorname},"
-				+ "selectorprice=#{selectorprice},"
-				+ "selectorimg=#{selectorimg},"
-				+ "selectordescribe=#{selectordescribe}"
-				+ " WHERE webid=#{webid}";
-		String deleteweb="DELETE FROM "
-				+ "tbweb WHERE webid =#{webid} ";
+				+ "selector_row=#{selector_row},"
+				+ "selector_name=#{selector_name},"
+				+ "selector_price=#{selector_price},"
+				+ "selector_image=#{selector_image},"
+				+ "selector_description=#{selector_description}"
+				+ " Where web_source_id=#{web_source_id}";
+		String deleteweb="Delete From "
+				+ "web_source Where web_source_id =#{web_source_id} ";
 	}
 	
 }
