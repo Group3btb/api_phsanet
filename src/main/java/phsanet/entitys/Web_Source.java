@@ -5,7 +5,7 @@ public class Web_Source {
 	private int 		web_source_id;
 	private String 		website;
 	private String 		logo;
-	private String 		status;
+	private String 		url;
 	private String 		selector_row;
 	private String 		selector_name;
 	private String 		selector_price;
@@ -29,12 +29,7 @@ public class Web_Source {
 	public void setLogo(String logo) {
 		this.logo = logo;
 	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 	public String getSelector_row() {
 		return selector_row;
 	}
@@ -65,6 +60,12 @@ public class Web_Source {
 	}
 	public void setSelector_description(String selector_description) {
 		this.selector_description = selector_description;
+	}
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	
 }

@@ -58,7 +58,6 @@ public class MainCategoryController {
 	@RequestMapping(value={"/api/maincategory/{id}"},method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> deleteMainCategory(@PathVariable("id") int id){
 		Map<String,Object> map = new HashMap<String, Object>();
-		System.out.println("ID "+id);
 		if(mainCategoryServiceImplement.remove(id)){
 			map.put("MESSAGE","DELETE SUCCESS");
 			map.put("STATUS",true);

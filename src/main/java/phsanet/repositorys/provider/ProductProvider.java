@@ -32,14 +32,13 @@ public class ProductProvider {
 			  INNER_JOIN("subcategory sub On pro.subcategory_id = sub.subcategory_id");
 			  INNER_JOIN("web_source web On web.web_source_id = pro.web_source_id");
 			  
-			  if(filter.getProductname()!=null){
-				  WHERE("pro_name Like '%'|| #{filter.productname} ||'%' ");
+			  if(filter.getProductname()!= null){
+				  WHERE(" Lower(pro.product_name) Like '%'|| Lower(#{filter.productname}) ||'%' ");
 			  }
 			  if(filter.getProductname()!=null && filter.getSubcategoryname()!=null){
 				  WHERE("pro_name Like '%'|| #{filter.productname} ||'%' And sub_cateogry_name '%'||#{filter.subcategoryname}");
 			  }
 			  ORDER_BY("pro_id");
-			  
 			  
 		  }}.toString();
 		}

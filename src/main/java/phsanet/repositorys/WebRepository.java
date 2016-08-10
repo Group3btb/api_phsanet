@@ -22,7 +22,7 @@ public interface WebRepository {
 		@Result(property="web_source_id"		, column="web_resource_id"),
 		@Result(property="website" 				, column="website"),
 		@Result(property="logo" 				, column="logo"),
-		@Result(property="status"				, column="status"),
+		@Result(property="url"					, column="url"),
 		@Result(property="selector_row"			, column="selector_row"),
 		@Result(property="selector_name" 		, column="selector_name"),
 		@Result(property="selector_price"		, column="selector_price"),
@@ -37,7 +37,7 @@ public interface WebRepository {
 		@Result(property="web_source_id"		, column="web_resource_id"),
 		@Result(property="website" 				, column="website"),
 		@Result(property="logo" 				, column="logo"),
-		@Result(property="status"				, column="status"),
+		@Result(property="url"					, column="url"),
 		@Result(property="selector_row"			, column="selector_row"),
 		@Result(property="selector_name" 		, column="selector_name"),
 		@Result(property="selector_price"		, column="selector_price"),
@@ -66,7 +66,7 @@ public interface WebRepository {
 		String insertweb="	Insert Into web_source("
 				+ "website, "
 				+ "logo, "
-				+ "status, "
+				+ "url, "
 				+ "selector_row, "
 				+ "selector_name, "
 				+ "selector_price, "
@@ -75,7 +75,7 @@ public interface WebRepository {
 				+ "Values("
 				+ "#{website}, "
 				+ "#{logo}, "
-				+ "#{status}, "
+				+ "#{url}, "
 				+ "#{selector_row}, "
 				+ "#{selector_name},"
 				+ "#{selector_price}, "
@@ -85,7 +85,7 @@ public interface WebRepository {
 		String updateweb="Update web_source Set "
 				+ "website=#{website}, "
 				+ "logo=#{logo}, "
-				+ "status=#{status},"
+				+ "url=#{url},"
 				+ "selector_row=#{selector_row},"
 				+ "selector_name=#{selector_name},"
 				+ "selector_price=#{selector_price},"
