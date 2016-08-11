@@ -20,10 +20,11 @@ public interface ScrapManagermentRepository {
 	@Select(SQL.findAll)
 	@Results({
 		
-		@Result(property="url"					,column=	"scrap_url"),
-		@Result(property="scrap_id"				,column=	"scrap_id"),
-		@Result(property="web_source.website"	,column=	"web_name"),
-		@Result(property="web_source.logo"		,column=	"web_logo")
+		@Result(property="url"								,column=	"scrap_url"),
+		@Result(property="scrap_id"							,column=	"scrap_id"),
+		@Result(property="web_source.website"				,column=	"web_name"),
+		@Result(property="subcategory.subcategory_name"		,column=	"sub_name"),
+		@Result(property="web_source.logo"					,column=	"web_logo")
 		
 	})
 	public ArrayList<Scrap_Managerment> findAll();
@@ -31,10 +32,11 @@ public interface ScrapManagermentRepository {
 	@Select(SQL.search)
 	@Results({
 		
-		@Result(property="url"					,column=	"scrap_url"),
-		@Result(property="scrap_id"				,column=	"scrap_id"),
-		@Result(property="web_source.website"	,column=	"web_name"),
-		@Result(property="web_source.logo"		,column=	"web_logo")
+		@Result(property="url"								,column=	"scrap_url"),
+		@Result(property="scrap_id"							,column=	"scrap_id"),
+		@Result(property="web_source.website"				,column=	"web_name"),
+		@Result(property="subcategory.subcategory_name"		,column=	"sub_name"),
+		@Result(property="web_source.logo"					,column=	"web_logo")
 		
 	})
 	public ArrayList<Scrap_Managerment> search(String search);
@@ -55,8 +57,8 @@ public interface ScrapManagermentRepository {
 				+ "		scp.scrap_id 			as scrap_id				,"
 				+ "		web.website 			as web_name				,"
 				+ "		web.logo 				as web_logo				,"
-				+ "		scp.url 				as scrap_url			 "
-				
+				+ "		scp.url 				as scrap_url			,"
+				+ "		sub.subcategory_name 	as sub_name				 "
 				+ " 	From scrap scp Inner Join web_source web "
 				+ "		on scp.web_source_id = web.web_source_id "
 				+ "		Inner Join subcategory sub "
@@ -72,6 +74,7 @@ public interface ScrapManagermentRepository {
 				+ "		scp.scrap_id 			as scrap_id				,"
 				+ "		web.website 			as web_name				,"
 				+ "		web.logo 				as web_logo				,"
+				+"		sub.subcategory_name 	as sub_name				,"
 				+ "		scp.url 				as scrap_url			 "
 				+ " 	From scrap scp Inner Join web_source web "
 				+ "		on scp.web_source_id = web.web_source_id "
