@@ -52,7 +52,7 @@ public interface ProductTemporaryRepository {
 	public ArrayList<Temporary_Item> search(String search);
 	
 	@Insert(SQL.save_product)
-	public boolean save(ArrayList<Temporary_Item> product);
+	public boolean save(Temporary_Item product);
 	
 	@Update(SQL.update_product)
 	public boolean update(Temporary_Item product);
