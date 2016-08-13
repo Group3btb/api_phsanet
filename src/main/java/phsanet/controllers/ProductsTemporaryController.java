@@ -56,9 +56,9 @@ public class ProductsTemporaryController {
 	}
 	
 	@RequestMapping(value={"/api/producttemporary"},method= RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> saveProductTemporary(@RequestBody Temporary_Item product){
+	public ResponseEntity<Map<String,Object>> saveProductTemporary(@RequestBody Temporary_Item products){
 		Map<String,Object> map = new HashMap<String, Object>();
-		if(producttemporaryimplement.save(product)){
+		if(producttemporaryimplement.save(products)){
 			map.put("MESSAG","INSERT SUCCESS");
 			map.put("STATUS",true);
 		}else{
@@ -67,6 +67,20 @@ public class ProductsTemporaryController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	
+/*	@RequestMapping(value={"/api/producttemporaries"},method= RequestMethod.POST)
+	public ResponseEntity<Map<String,Object>> save_all_ProductTemporary(@RequestBody ArrayList<Temporary_Item> products){
+		Map<String,Object> map = new HashMap<String, Object>();
+		if(true){
+			map.put("MESSAG","INSERT SUCCESS");
+			map.put("STATUS",true);
+		}else{
+			map.put("MESSAG","INSERT FAIL");
+			map.put("STATUS",false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}*/
 	
 	@RequestMapping(value={"/api/producttemporary/{id}"},method= RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> deleteProductTemporary(@PathVariable("id") int id){

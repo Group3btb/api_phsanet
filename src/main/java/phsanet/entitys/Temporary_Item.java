@@ -7,8 +7,7 @@ public class Temporary_Item {
 		private SubCategory 	subcategory;
 		private String 			product_name;
 		private String 			price;
-		private String 			describe;
-		private String 			link;
+		private String 			description;
 		private String 			product_image;
 		private Web_Source 		web_source;
 		
@@ -37,18 +36,7 @@ public class Temporary_Item {
 		public void setPrice(String price) {
 			this.price = price;
 		}
-		public String getDescribe() {
-			return describe;
-		}
-		public void setDescribe(String describe) {
-			this.describe = describe;
-		}
-		public String getLink() {
-			return link;
-		}
-		public void setLink(String link) {
-			this.link = link;
-		}
+	
 		public String getProduct_image() {
 			return product_image;
 		}
@@ -60,6 +48,12 @@ public class Temporary_Item {
 		}
 		public void setWeb_source(Web_Source web_source) {
 			this.web_source = web_source;
+		}
+		public String getDescription() {
+			return description;
+		}
+		public void setDescription(String description) {
+			this.description = description;
 		}
 	
 }
