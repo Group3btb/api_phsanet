@@ -34,7 +34,7 @@ public class WebSourceController {
 		}else{
 			map.put("MESSAGE","DATA FOUND");
 			map.put("STATUS",true);
-			map.put("DATA",allweb);
+			map.put("DATA",allweb);// web
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
