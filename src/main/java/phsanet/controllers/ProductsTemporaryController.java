@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import phsanet.entitys.Products;
 import phsanet.entitys.Temporary_Item;
 import phsanet.service.implement.ProductTemporaryImplement;
 
@@ -26,7 +27,7 @@ public class ProductsTemporaryController {
 	@RequestMapping(value={"/api/producttemporary"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllProductsTemporary(){
 		Map<String,Object> map = new HashMap<String,Object>();
-		ArrayList<Temporary_Item> allproduct = new ArrayList<Temporary_Item>();
+		ArrayList<Products> allproduct = new ArrayList<>();
 		allproduct = producttemporaryimplement.findAll();
 		if(allproduct.isEmpty()){
 			map.put("MESSAG","DATA NOT FOUND");
@@ -42,7 +43,7 @@ public class ProductsTemporaryController {
 	@RequestMapping(value={"/api/producttemporary/{search}"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchProductsTemporary(@PathVariable("search") String search){
 		Map<String,Object> map = new HashMap<String,Object>();
-		ArrayList<Temporary_Item> allproduct = new ArrayList<Temporary_Item>();
+		ArrayList<Products> allproduct = new ArrayList<>();
 		allproduct = producttemporaryimplement.findAll();
 		if(allproduct.isEmpty()){
 			map.put("MESSAG","DATA NOT FOUND");
@@ -55,7 +56,7 @@ public class ProductsTemporaryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/producttemporary"},method= RequestMethod.POST)
+	/*@RequestMapping(value={"/api/producttemporary"},method= RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveProductTemporary(@RequestBody Temporary_Item products){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(producttemporaryimplement.save(products)){
@@ -67,7 +68,7 @@ public class ProductsTemporaryController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
-	
+	*/
 	
 /*	@RequestMapping(value={"/api/producttemporaries"},method= RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> save_all_ProductTemporary(@RequestBody ArrayList<Temporary_Item> products){
@@ -96,7 +97,7 @@ public class ProductsTemporaryController {
 	}
 	
 	@RequestMapping(value={"/api/producttemporary"},method= RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateProductTemporary(@RequestBody Temporary_Item product){
+	public ResponseEntity<Map<String,Object>> updateProductTemporary(@RequestBody Products product){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(producttemporaryimplement.update(product)){
 			map.put("MESSAG","UPDATE SUCCESS");

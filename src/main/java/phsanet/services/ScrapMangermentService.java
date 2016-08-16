@@ -9,5 +9,5 @@ public interface ScrapMangermentService {
 	public boolean save(Scrap_Managerment scrap);
 	public boolean remove(int id);
 	public boolean update(Scrap_Managerment scrap);
-	public ArrayList<Scrap_Managerment> search(String search);
+	public ArrayList<Scrap_Managerment> search(int id);
 }

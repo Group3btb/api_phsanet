@@ -6,6 +6,7 @@ public class Scrap_Managerment {
 	private Web_Source web_source;
 	private SubCategory subcategory;
 	private String url;
+	private String status;
 	public Web_Source getWeb_source() {
 		return web_source;
 	}
@@ -29,5 +30,11 @@ public class Scrap_Managerment {
 	}
 	public void setScrap_id(int scrap_id) {
 		this.scrap_id = scrap_id;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

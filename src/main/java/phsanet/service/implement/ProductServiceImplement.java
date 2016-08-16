@@ -35,7 +35,7 @@ public class ProductServiceImplement implements ProductService {
 	}
 
 	@Override
-	public boolean save(Products product) {
+	public boolean save(ArrayList<Products> product) {
 		// TODO Auto-generated method stub
 		return productrepository.save(product);
 	}

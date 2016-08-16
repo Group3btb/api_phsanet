@@ -43,9 +43,9 @@ public class ScrapManagermenetImplement implements ScrapMangermentService {
 	}
 
 	@Override
-	public ArrayList<Scrap_Managerment> search(String search) {
+	public ArrayList<Scrap_Managerment> search(int id) {
 		// TODO Auto-generated method stub
-		return scrapmanagermentrepository.search(search);
+		return scrapmanagermentrepository.search(id);
 	}
 
 }

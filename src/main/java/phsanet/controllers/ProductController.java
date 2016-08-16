@@ -47,7 +47,7 @@ public class ProductController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	@RequestMapping(value={"/api/product"},method = RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> saveProduct(@RequestBody Products product){
+	public ResponseEntity<Map<String,Object>> saveProduct(@RequestBody ArrayList<Products> product){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(productserviceimplement.save(product)){
 			map.put("MESSAG","INSERT SUCCESS");

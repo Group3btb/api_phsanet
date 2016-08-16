@@ -19,7 +19,6 @@ public class ProductProvider {
 						+ "	pro.product_image as pro_image					,"
 						+ "	pro.price as pro_price							,"
 						+ "	pro.description as pro_description				,"
-						+ "	pro.link as pro_link							,"
 						+ "	sub.subcategory_id as sub_id					,"
 						+ "	sub.subcategory_name as sub_category_name		,"
 						+ "	sub.description as sub_description				,"

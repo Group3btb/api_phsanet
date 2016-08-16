@@ -80,12 +80,12 @@ public class ScrapManagerment {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/scrap/{search}"},method = RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> searchScrap(@PathVariable("search") String search){
+	@RequestMapping(value={"/api/scrap/{id}"},method = RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> searchScrap(@PathVariable("id") int id){
 		
 		ArrayList<Scrap_Managerment> arr = new ArrayList<Scrap_Managerment>();
 		Map<String,Object> map = new HashMap<String, Object>();
-		arr = scrapmanegermentimplement.search(search);
+		arr = scrapmanegermentimplement.search(id);
 		if(arr.isEmpty()){
 			map.put("MESSAG","SEARCH NOT FOUND");
 			map.put("STATUS",false);

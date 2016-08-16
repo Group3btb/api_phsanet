@@ -9,7 +9,7 @@ public class Products {
 	 private String 		description;
 	 private String 		link;
 	 private String 		product_image;
-	 private Web_Source web;
+	 private Web_Source 	web;
 	
 	public SubCategory getSubcategory() {
 		return subcategory;

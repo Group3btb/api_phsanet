@@ -2,12 +2,13 @@ package phsanet.services;
 
 import java.util.ArrayList;
 
-import phsanet.entitys.Temporary_Item;
+import phsanet.entitys.Products;
+
 
 public interface ProductTemporaryService {
-	public boolean save(Temporary_Item products);
+	public boolean save(ArrayList<Products> products);
 	public boolean remove(int id);
-	public boolean update(Temporary_Item product);
-	public ArrayList<Temporary_Item> findAll();
-	public ArrayList<Temporary_Item> search(String search);
+	public boolean update(Products product);
+	public ArrayList<Products> findAll();
+	public ArrayList<Products> search(String search);
 }

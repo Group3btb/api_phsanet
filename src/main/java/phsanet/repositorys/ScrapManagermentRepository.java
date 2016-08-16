@@ -22,6 +22,7 @@ public interface ScrapManagermentRepository {
 		
 		@Result(property="url"								,	column=	"scrap_url"),
 		@Result(property="scrap_id"							,	column=	"scrap_id"),
+		@Result(property="status"							,	column=	"scrap_status"),
 		@Result(property="web_source.web_source_id"			,	column=	"web_id"),
 		@Result(property="web_source.website"				,	column=	"web_name"),
 		@Result(property="subcategory.subcategory_id"		,	column=	"sub_id"),
@@ -42,6 +43,7 @@ public interface ScrapManagermentRepository {
 		
 		@Result(property="url"								,	column=	"scrap_url"),
 		@Result(property="scrap_id"							,	column=	"scrap_id"),
+		@Result(property="status"							,	column=	"scrap_status"),
 		@Result(property="web_source.web_source_id"			,	column=	"web_id"),
 		@Result(property="web_source.website"				,	column=	"web_name"),
 		@Result(property="subcategory.subcategory_id"		,	column=	"sub_id"),
@@ -55,7 +57,7 @@ public interface ScrapManagermentRepository {
 		@Result(property="web_source.selector_description"	, 	column= "web_description")
 		
 	})
-	public ArrayList<Scrap_Managerment> search(String search);
+	public ArrayList<Scrap_Managerment> search(int id);
 	
 	@Insert(SQL.save)
 	public boolean save(Scrap_Managerment scrap);
@@ -81,12 +83,13 @@ public interface ScrapManagermentRepository {
 				+ "		web.selector_image 		as web_image			,"
 				+ "		web.selector_description as web_description		,"
 				+ "		scp.url 				as scrap_url			,"
+				+ "		scp.status				as scrap_status			,"
 				+"		sub.subcategory_id      as sub_id				,"	
 				+ "		sub.subcategory_name 	as sub_name				 "
-				+ " 	From scrap scp Inner Join web_source web "
-				+ "		on scp.web_source_id = web.web_source_id "
-				+ "		Inner Join subcategory sub "
-				+ "		on scp.subcategory_id = sub.subcategory_id";
+				+ " 	From scrap scp Inner Join web_source web 		 "
+				+ "		on scp.web_source_id = web.web_source_id		 "
+				+ "		Inner Join subcategory sub 						 "
+				+ "		on scp.subcategory_id = sub.subcategory_id		 ";
 		
 		String save = "Insert Into scrap"
 				+ "		(url,web_source_id,subcategory_id) 			"
@@ -107,17 +110,19 @@ public interface ScrapManagermentRepository {
 				+ "		web.selector_image 		as web_image			,"
 				+ "		web.selector_description as web_description		,"
 				+ "		scp.url 				as scrap_url			,"
+				+ "		scp.status				as scrap_status			,"
 				+"		sub.subcategory_id      as sub_id				,"	
 				+ "		sub.subcategory_name 	as sub_name				 "
 				+ " 	From scrap scp Inner Join web_source web "
 				+ "		on scp.web_source_id = web.web_source_id "
 				+ "		Inner Join subcategory sub "
-				+ "		on scp.subcategory_id = sub.subcategory_id";
+				+ "		on scp.subcategory_id = sub.subcategory_id 		"
+				+ "		Where 	web.web_source_id = #{id}				";
+		
 		String update="	Update scrap Set url=#{url} Where scrap_id=#{scrap_id} ";
 		
 		String delete=" Delete From scrap Where scrap_id=#{id}";
-		
-		
+				
 		
 	}
 	
