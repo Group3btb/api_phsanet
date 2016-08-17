@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import phsanet.entitys.Scrap_Managerment;
+import phsanet.entitys.Site_Detail_Managerment;
 import phsanet.service.implement.SiteDetailManagermenetImplement;
 
 @RestController
@@ -25,7 +25,7 @@ public class ScrapManagerment {
 	private SiteDetailManagermenetImplement scrapmanegermentimplement;
 	
 	@RequestMapping(value={"/api/scrap"},method = RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> saveScrap(@RequestBody Scrap_Managerment scrap){
+	public ResponseEntity<Map<String,Object>> saveScrap(@RequestBody Site_Detail_Managerment scrap){
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(scrapmanegermentimplement.save(scrap)){
 			map.put("MESSAG","SUCCESS");
@@ -40,7 +40,7 @@ public class ScrapManagerment {
 	@RequestMapping(value={"/api/scrap"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllScrap(){
 		Map<String,Object> map = new HashMap<String, Object>();
-		ArrayList<Scrap_Managerment> arr = new ArrayList<Scrap_Managerment>();
+		ArrayList<Site_Detail_Managerment> arr = new ArrayList<Site_Detail_Managerment>();
 		arr = scrapmanegermentimplement.findAll();
 		if(arr.isEmpty()){
 			map.put("MESSAG","DATA NOT FOUND");
@@ -54,7 +54,7 @@ public class ScrapManagerment {
 	}
 	
 	@RequestMapping(value={"/api/scrap"},method = RequestMethod.PUT)
-	public ResponseEntity<Map<String,Object>> updateScrap(@RequestBody Scrap_Managerment scrap){
+	public ResponseEntity<Map<String,Object>> updateScrap(@RequestBody Site_Detail_Managerment scrap){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		if(scrapmanegermentimplement.update(scrap)){
@@ -68,9 +68,9 @@ public class ScrapManagerment {
 	}
 	
 	@RequestMapping(value={"/api/scrap"},method = RequestMethod.PATCH)
-	public ResponseEntity<Map<String,Object>> updatestatus(@RequestBody Scrap_Managerment scrap){
+	public ResponseEntity<Map<String,Object>> updatestatus(@RequestBody Site_Detail_Managerment scrap){
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		System.out.println(scrap);
 		if(scrapmanegermentimplement.update_status(scrap)){
 			map.put("MESSAG","SUCCESS");
 			map.put("STATUS",true);
@@ -98,7 +98,7 @@ public class ScrapManagerment {
 	@RequestMapping(value={"/api/scrap/{id}"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchScrap(@PathVariable("id") int id){
 		
-		ArrayList<Scrap_Managerment> arr = new ArrayList<Scrap_Managerment>();
+		ArrayList<Site_Detail_Managerment> arr = new ArrayList<Site_Detail_Managerment>();
 		Map<String,Object> map = new HashMap<String, Object>();
 		arr = scrapmanegermentimplement.search(id);
 		if(arr.isEmpty()){

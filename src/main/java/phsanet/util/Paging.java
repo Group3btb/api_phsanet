@@ -29,7 +29,7 @@ public class Paging implements Serializable{
 	private int offset;
 
 	public Paging() {
-		this(1, 10, 0L, 0L);
+		this(1, 30, 0L, 0L);
 	}
 
 	public Paging(int page, int limit) {

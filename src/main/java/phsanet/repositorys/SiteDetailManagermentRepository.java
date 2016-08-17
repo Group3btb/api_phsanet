@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import phsanet.entitys.Scrap_Managerment;
+import phsanet.entitys.Site_Detail_Managerment;
 
 @Repository
 @Qualifier("Scrapmanagermentrepository")
@@ -36,7 +36,7 @@ public interface SiteDetailManagermentRepository {
 		@Result(property="web_source.selector_description"	, 	column= "web_description")
 		
 	})
-	public ArrayList<Scrap_Managerment> findAll();
+	public ArrayList<Site_Detail_Managerment> findAll();
 	
 	@Select(SQL.search)
 	@Results({
@@ -57,16 +57,16 @@ public interface SiteDetailManagermentRepository {
 		@Result(property="web_source.selector_description"	, 	column= "web_description")
 		
 	})
-	public ArrayList<Scrap_Managerment> search(int id);
+	public ArrayList<Site_Detail_Managerment> search(int id);
 	
 	@Insert(SQL.save)
-	public boolean save(Scrap_Managerment scrap);
+	public boolean save(Site_Detail_Managerment scrap);
 	
 	@Update(SQL.update)
-	public boolean update(Scrap_Managerment scrap);
+	public boolean update(Site_Detail_Managerment scrap);
 	
 	@Update(SQL.update_status)
-	public boolean update_status(Scrap_Managerment scrap);
+	public boolean update_status(Site_Detail_Managerment scrap);
 	
 	@Delete(SQL.delete)
 	public boolean remove(int id);

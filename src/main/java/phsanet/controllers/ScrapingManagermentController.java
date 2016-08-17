@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import phsanet.entitys.Products;
-import phsanet.entitys.Scrap_Managerment;
+import phsanet.entitys.Site_Detail_Managerment;
 import phsanet.entitys.SubCategory;
 import phsanet.entitys.Web_Source;
 import phsanet.service.implement.ProductServiceImplement;
@@ -47,7 +47,29 @@ public class ScrapingManagermentController {
 		
 		try{
 			
-			for(Scrap_Managerment scrap : this.findAll_scrap(web.getWeb_source_id())){
+			for(Site_Detail_Managerment scrap : this.findAll_scrap(web.getWeb_source_id())){
+				if(scrap.getStatus().toLowerCase().trim().compareTo("yes")==0){
+						productserviceimplement.save(this._scraping(scrap));
+				}else{
+						producttemporaryimplement.save(this._scraping(scrap));
+				}
+			}
+			
+		}catch(Exception ex){
+			map.put("ERROR",false);
+			ex.printStackTrace();
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value={"/startscrap"} , method = RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> start_scrap_all(){
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		
+		try{
+			
+			for(Site_Detail_Managerment scrap :scrapmanagermenetimplement.findAll()){
 				if(scrap.getStatus().toLowerCase().trim().compareTo("yes")==0){
 						productserviceimplement.save(this._scraping(scrap));
 				}else{
@@ -63,14 +85,16 @@ public class ScrapingManagermentController {
 	}
 	
 	
-	public ArrayList<Scrap_Managerment> findAll_scrap(int id){
-		ArrayList<Scrap_Managerment> scrap = new ArrayList<>();
+	public ArrayList<Site_Detail_Managerment> findAll_scrap(int id){
+		ArrayList<Site_Detail_Managerment> scrap = new ArrayList<>();
 		scrap = scrapmanagermenetimplement.search(id);
 		return scrap;
 	}
 	
 	
-	private ArrayList<Products> _scraping(Scrap_Managerment scrap) throws IOException{
+	
+	
+	private ArrayList<Products> _scraping(Site_Detail_Managerment scrap) throws IOException{
 		
 		
 		ArrayList<String> all_name 		= new ArrayList<>();

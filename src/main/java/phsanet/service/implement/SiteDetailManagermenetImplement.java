@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import org.springframework.stereotype.Service;
 
-import phsanet.entitys.Scrap_Managerment;
+import phsanet.entitys.Site_Detail_Managerment;
 import phsanet.repositorys.SiteDetailManagermentRepository;
 import phsanet.services.SiteDetailMangermentService;
 
@@ -20,12 +20,12 @@ public class SiteDetailManagermenetImplement implements SiteDetailMangermentServ
 	private SiteDetailManagermentRepository scrapmanagermentrepository;
 	
 	@Override
-	public ArrayList<Scrap_Managerment> findAll() {
+	public ArrayList<Site_Detail_Managerment> findAll() {
 		return scrapmanagermentrepository.findAll();
 	}
 
 	@Override
-	public boolean save(Scrap_Managerment scrap) {
+	public boolean save(Site_Detail_Managerment scrap) {
 		// TODO Auto-generated method stub
 		return scrapmanagermentrepository.save(scrap);
 	}
@@ -37,19 +37,19 @@ public class SiteDetailManagermenetImplement implements SiteDetailMangermentServ
 	}
 
 	@Override
-	public boolean update(Scrap_Managerment scrap) {
+	public boolean update(Site_Detail_Managerment scrap) {
 		// TODO Auto-generated method stub
 		return scrapmanagermentrepository.update(scrap);
 	}
 
 	@Override
-	public ArrayList<Scrap_Managerment> search(int id) {
+	public ArrayList<Site_Detail_Managerment> search(int id) {
 		// TODO Auto-generated method stub
 		return scrapmanagermentrepository.search(id);
 	}
 
 	@Override
-	public boolean update_status(Scrap_Managerment scrap) {
+	public boolean update_status(Site_Detail_Managerment scrap) {
 		// TODO Auto-generated method stub
 		return scrapmanagermentrepository.update_status(scrap);
 	}

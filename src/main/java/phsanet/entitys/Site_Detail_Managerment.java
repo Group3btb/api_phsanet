@@ -1,6 +1,6 @@
 package phsanet.entitys;
 
-public class Scrap_Managerment {
+public class Site_Detail_Managerment {
 	
 	private int scrap_id;
 	private Web_Source web_source;
