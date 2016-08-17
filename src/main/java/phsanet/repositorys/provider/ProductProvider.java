@@ -3,8 +3,6 @@ package phsanet.repositorys.provider;
 import java.util.Map;
 
 import org.apache.ibatis.jdbc.SQL;
-
-
 import phsanet.util.ProductFilter;
 
 public class ProductProvider {
@@ -22,22 +20,39 @@ public class ProductProvider {
 						+ "	sub.subcategory_id as sub_id					,"
 						+ "	sub.subcategory_name as sub_category_name		,"
 						+ "	sub.description as sub_description				,"
+						+ "	cat.category_name as cat_name					,"
+						+ "	main.category_name as main_name					,"
 						+ "	web.web_source_id as web_id						,"
 						+ "	web.website as web_website						,"
-						+ "	web.logo as web_logo							 ");
+						+ "	web.url as web_url								,"
+						+ "	web.logo as web_logo							");
 			  
 			  FROM("product pro");
 			  
 			  INNER_JOIN("subcategory sub On pro.subcategory_id = sub.subcategory_id");
 			  INNER_JOIN("web_source web On web.web_source_id = pro.web_source_id");
+			  INNER_JOIN("category cat on cat.category_id = sub.category_id");
+			  INNER_JOIN("main_category main on cat.maincategory_id = main.maincategory_id");
+			  
 			  
 			  if(filter.getProductname()!= null){
 				  WHERE(" Lower(pro.product_name) Like '%'|| Lower(#{filter.productname}) ||'%' ");
 			  }
 			  if(filter.getProductname()!=null && filter.getSubcategoryname()!=null){
 				  WHERE("pro_name Like '%'|| #{filter.productname} ||'%' And sub_cateogry_name '%'||#{filter.subcategoryname}");
+				  
 			  }
-			  ORDER_BY("pro_id");
+			  if(filter.getMaincategory() !=null){
+				  WHERE("	main.category_name = #{filter.maincategory}");
+			  }
+			  if(filter.getSubcategoryname()!=null){
+				  WHERE("	cat.category_name = #{filter.subcategory}");
+			  }
+			
+			  ORDER_BY("pro_id desc LIMIT #{paging.limit} OFFSET #{paging.offset} ");
+			  
+			  
+			  
 			  
 		  }}.toString();
 		}

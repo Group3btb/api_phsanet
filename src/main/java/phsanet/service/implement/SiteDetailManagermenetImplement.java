@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import phsanet.entitys.Scrap_Managerment;
-import phsanet.repositorys.ScrapManagermentRepository;
-import phsanet.services.ScrapMangermentService;
+import phsanet.repositorys.SiteDetailManagermentRepository;
+import phsanet.services.SiteDetailMangermentService;
 
 @Service
 @Qualifier("scrapmanagermenetimplement")
-public class ScrapManagermenetImplement implements ScrapMangermentService {
+public class SiteDetailManagermenetImplement implements SiteDetailMangermentService {
 	
 	@Autowired
 	@Qualifier("Scrapmanagermentrepository")
-	private ScrapManagermentRepository scrapmanagermentrepository;
+	private SiteDetailManagermentRepository scrapmanagermentrepository;
 	
 	@Override
 	public ArrayList<Scrap_Managerment> findAll() {
@@ -46,6 +46,12 @@ public class ScrapManagermenetImplement implements ScrapMangermentService {
 	public ArrayList<Scrap_Managerment> search(int id) {
 		// TODO Auto-generated method stub
 		return scrapmanagermentrepository.search(id);
+	}
+
+	@Override
+	public boolean update_status(Scrap_Managerment scrap) {
+		// TODO Auto-generated method stub
+		return scrapmanagermentrepository.update_status(scrap);
 	}
 
 }

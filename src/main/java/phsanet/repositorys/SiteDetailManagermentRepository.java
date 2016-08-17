@@ -15,7 +15,7 @@ import phsanet.entitys.Scrap_Managerment;
 
 @Repository
 @Qualifier("Scrapmanagermentrepository")
-public interface ScrapManagermentRepository {
+public interface SiteDetailManagermentRepository {
 	
 	@Select(SQL.findAll)
 	@Results({
@@ -64,6 +64,9 @@ public interface ScrapManagermentRepository {
 	
 	@Update(SQL.update)
 	public boolean update(Scrap_Managerment scrap);
+	
+	@Update(SQL.update_status)
+	public boolean update_status(Scrap_Managerment scrap);
 	
 	@Delete(SQL.delete)
 	public boolean remove(int id);
@@ -120,6 +123,8 @@ public interface ScrapManagermentRepository {
 				+ "		Where 	web.web_source_id = #{id}				";
 		
 		String update="	Update scrap Set url=#{url} Where scrap_id=#{scrap_id} ";
+		
+		String update_status =" Update scrap Set status=#{status} Where scrap_id=#{scrap_id} ";
 		
 		String delete=" Delete From scrap Where scrap_id=#{id}";
 				

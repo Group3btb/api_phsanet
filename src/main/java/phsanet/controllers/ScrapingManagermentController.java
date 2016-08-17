@@ -23,14 +23,14 @@ import phsanet.entitys.SubCategory;
 import phsanet.entitys.Web_Source;
 import phsanet.service.implement.ProductServiceImplement;
 import phsanet.service.implement.ProductTemporaryImplement;
-import phsanet.service.implement.ScrapManagermenetImplement;
+import phsanet.service.implement.SiteDetailManagermenetImplement;
 
 @RestController
 public class ScrapingManagermentController {
 	
 	@Autowired
 	@Qualifier("scrapmanagermenetimplement")
-	private ScrapManagermenetImplement scrapmanagermenetimplement;
+	private SiteDetailManagermenetImplement scrapmanagermenetimplement;
 	
 	@Autowired
 	@Qualifier("productserviceimplement")

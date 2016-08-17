@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import phsanet.entitys.Scrap_Managerment;
-import phsanet.service.implement.ScrapManagermenetImplement;
+import phsanet.service.implement.SiteDetailManagermenetImplement;
 
 @RestController
 public class ScrapManagerment {
 	
 	@Autowired
 	@Qualifier("scrapmanagermenetimplement")
-	private ScrapManagermenetImplement scrapmanegermentimplement;
+	private SiteDetailManagermenetImplement scrapmanegermentimplement;
 	
 	@RequestMapping(value={"/api/scrap"},method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveScrap(@RequestBody Scrap_Managerment scrap){
@@ -66,6 +66,21 @@ public class ScrapManagerment {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value={"/api/scrap"},method = RequestMethod.PATCH)
+	public ResponseEntity<Map<String,Object>> updatestatus(@RequestBody Scrap_Managerment scrap){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		if(scrapmanegermentimplement.update_status(scrap)){
+			map.put("MESSAG","SUCCESS");
+			map.put("STATUS",true);
+		}else{
+			map.put("MESSAG","FAILD");
+			map.put("STATUS",false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
 	
 	@RequestMapping(value={"/api/scrap/{id}"}, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> removeScrap(@PathVariable int id){

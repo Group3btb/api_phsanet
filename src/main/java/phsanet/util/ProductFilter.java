@@ -2,7 +2,23 @@ package phsanet.util;
 
 public class ProductFilter {
 	
+	private String maincategory;
+	private String category;
+	
+	public String getMaincategory() {
+		return maincategory;
+	}
+	public void setMaincategory(String maincategory) {
+		this.maincategory = maincategory;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	private String subcategoryname;
+	
 	public String getSubcategoryname() {
 		return subcategoryname;
 	}

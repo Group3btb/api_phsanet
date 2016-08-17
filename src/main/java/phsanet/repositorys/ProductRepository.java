@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import ch.qos.logback.core.filter.Filter;
+
 import phsanet.entitys.Products;
 import phsanet.repositorys.provider.ProductProvider;
 import phsanet.util.Paging;
@@ -24,19 +24,23 @@ import phsanet.util.ProductFilter;
 public interface ProductRepository {
 	//SIM RATHAHAUSONG
 	@SelectProvider(type=ProductProvider.class, method = "selectPersonLike")
+	//@Select(SQL.select_pagin)
 	@Results({
-		@Result(property="product_id" 					,	column="pro_id"),
-		@Result(property="product_name" 				,	column="pro_name"),
-		@Result(property="product_image" 				,	column="pro_image"),
-		@Result(property="price"						,	column="pro_price"),
-		@Result(property="description"					,	column="pro_description"),
-		@Result(property="link"							,	column="pro_link"),
-		@Result(property="subcategory.subcategory_id"	,	column="sub_id"),
-		@Result(property="subcategory.subcategory_name"	,	column="sub_category_name"),
-		@Result(property="subcategory.description"		,	column="sub_description"),
-		@Result(property="web.web_source_id"			,	column="web_id"),
-		@Result(property="web.website"					,	column="web_website"),
-		@Result(property="web.logo"						,	column="web_logo")
+		@Result(property="product_id" 										,	column="pro_id"),
+		@Result(property="product_name" 									,	column="pro_name"),
+		@Result(property="product_image" 									,	column="pro_image"),
+		@Result(property="price"											,	column="pro_price"),
+		@Result(property="description"										,	column="pro_description"),
+		//@Result(property="link"							,	column="pro_link"),
+		@Result(property="subcategory.subcategory_id"						,	column="sub_id"),
+		@Result(property="subcategory.subcategory_name"						,	column="sub_category_name"),
+		@Result(property="subcategory.description"							,	column="sub_description"),
+		@Result(property="subcategory.category.category_name"				,	column="cat_name"),
+		@Result(property="subcategory.category.main_category.category_name"	,	column="main_name"),
+		@Result(property="web.web_source_id"								,	column="web_id"),
+		@Result(property="web.website"										,	column="web_website"),
+		@Result(property="web.url"											,	column="web_url"),
+		@Result(property="web.logo"											,	column="web_logo")
 	})
 	public ArrayList<Products> findAll(@Param("filter") ProductFilter filter , @Param("paging") Paging paging);
 	
