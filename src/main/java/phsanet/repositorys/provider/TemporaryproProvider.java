@@ -3,12 +3,14 @@ package phsanet.repositorys.provider;
 import java.util.Map;
 
 import org.apache.ibatis.jdbc.SQL;
+
 import phsanet.util.ProductFilter;
 
-public class ProductProvider {
+public class TemporaryproProvider {
 	public String selectPersonLike(Map<String, Object> params) {
 		  final ProductFilter filter = (ProductFilter) params.get("filter");
 		 
+		
 		  return new SQL() {{
 			  
 			  SELECT(	"	pro.product_id as pro_id						,"
@@ -26,7 +28,7 @@ public class ProductProvider {
 						+ "	web.url as web_url								,"
 						+ "	web.logo as web_logo							");
 			  
-			  FROM("product pro");
+			  FROM("temporary_item pro");
 			  
 			  INNER_JOIN("subcategory sub On pro.subcategory_id = sub.subcategory_id");
 			  INNER_JOIN("web_source web On web.web_source_id = pro.web_source_id");
@@ -50,9 +52,6 @@ public class ProductProvider {
 			
 			  ORDER_BY("pro_id desc LIMIT #{paging.limit} OFFSET #{paging.offset} ");
 			  
-			  
-			  
-			  
 		  }}.toString();
 		}
 	
@@ -63,7 +62,7 @@ public class ProductProvider {
 			  
 			  SELECT("COUNT(*)");
 			  
-			  FROM("product pro");
+			  FROM("temporary_item pro");
 			  
 			  INNER_JOIN("subcategory sub On pro.subcategory_id = sub.subcategory_id");
 			  INNER_JOIN("web_source web On web.web_source_id = pro.web_source_id");
@@ -87,6 +86,4 @@ public class ProductProvider {
 			  
 		  }}.toString();
 		}
-	
-		
 }

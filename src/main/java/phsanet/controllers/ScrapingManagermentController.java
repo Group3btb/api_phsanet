@@ -40,7 +40,7 @@ public class ScrapingManagermentController {
 	@Qualifier("producttemporaryimplement")
 	private ProductTemporaryImplement producttemporaryimplement;
 	
-	@RequestMapping(value={"/startscrap"} , method = RequestMethod.POST)
+	@RequestMapping(value={"/api/startscrap"} , method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> start_scraping(@RequestBody Web_Source web){
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -57,12 +57,12 @@ public class ScrapingManagermentController {
 			
 		}catch(Exception ex){
 			map.put("ERROR",false);
-			ex.printStackTrace();
+			System.out.println(ex.getMessage());
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/startscrap"} , method = RequestMethod.GET)
+	@RequestMapping(value={"/api/startscrap"} , method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> start_scrap_all(){
 		
 		Map<String,Object> map = new HashMap<String,Object>();
@@ -71,11 +71,16 @@ public class ScrapingManagermentController {
 			
 			for(Site_Detail_Managerment scrap :scrapmanagermenetimplement.findAll()){
 				if(scrap.getStatus().toLowerCase().trim().compareTo("yes")==0){
-						productserviceimplement.save(this._scraping(scrap));
+					productserviceimplement.save(this._scraping(scrap));
+					//System.out.println("Product");
 				}else{
-						producttemporaryimplement.save(this._scraping(scrap));
+					producttemporaryimplement.save(this._scraping(scrap));
+					//System.out.println("Temporary");
 				}
 			}
+			
+			map.put("MESSAGE","SUCCESS");
+			map.put("STATUS",false);
 			
 		}catch(Exception ex){
 			map.put("ERROR",false);
@@ -94,7 +99,7 @@ public class ScrapingManagermentController {
 	
 	
 	
-	private ArrayList<Products> _scraping(Site_Detail_Managerment scrap) throws IOException{
+	public ArrayList<Products> _scraping(Site_Detail_Managerment scrap) throws IOException{
 		
 		
 		ArrayList<String> all_name 		= new ArrayList<>();
@@ -112,12 +117,21 @@ public class ScrapingManagermentController {
 		int web_source_id 			=   scrap.getWeb_source().getWeb_source_id();
 		int subcategory_id 			= 	scrap.getSubcategory().getSubcategory_id();
 		
+		System.out.println(url);
+		System.out.println(row_selector);
+		System.out.println(selector_product_name);
+		System.out.println(selector_price);
+		System.out.println( selector_url_image);
+		System.out.println(selector_url_image);
+		System.out.println(selector_descride);
+		System.out.println(web_source_id);
+		System.out.println(subcategory_id );
 		try {
 			
 			Document document = Jsoup.connect(url).timeout(10000).get();
 			Elements main_selector = document.select(row_selector);
 			
-			System.out.println("URL "+scrap.getUrl());
+			/*System.out.println("URL "+scrap.getUrl());*/
 			/*Connection con = HttpConnection.connect(url)
 					.method(Method.POST)
 					.da*/

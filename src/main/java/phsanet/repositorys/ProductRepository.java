@@ -44,7 +44,8 @@ public interface ProductRepository {
 	})
 	public ArrayList<Products> findAll(@Param("filter") ProductFilter filter , @Param("paging") Paging paging);
 	
-	@Select(SQL.count)
+	//@Select(SQL.count)
+	@SelectProvider(type=ProductProvider.class, method = "selectcount")
 	public long count(@Param("filter") ProductFilter filter);
 	
 	@Insert(SQL.INSERT_IGNORE)
@@ -166,7 +167,7 @@ public interface ProductRepository {
 				+ "			 34	   			   	   ,"
 				+ "			'product_image' 		"
 				+ "			WHERE NOT EXISTS(		"
-				+ "			SELECT description FROM product where trim(both ' ' from description)= trim(both ' ' from #{product.description}) "
+				+ "			SELECT description FROM product where trim(both ' ' from description)= trim(both ' ' from 'description') "
 				+ "				) 					"		
 				+ " )								"
 				+ "	<foreach  collection='all_product' item='product' separator=' '>"

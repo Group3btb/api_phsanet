@@ -7,9 +7,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import phsanet.entitys.Products;
-import phsanet.entitys.Temporary_Item;
 import phsanet.repositorys.ProductTemporaryRepository;
 import phsanet.services.ProductTemporaryService;
+import phsanet.util.Paging;
+import phsanet.util.ProductFilter;
 
 @Service
 @Qualifier("producttemporaryimplement")
@@ -32,9 +33,10 @@ public class ProductTemporaryImplement implements ProductTemporaryService {
 	}
 
 	@Override
-	public ArrayList<Products> findAll() {
+	public ArrayList<Products> findAll(ProductFilter filter,Paging paging) {
 		// TODO Auto-generated method stub
-		return null;
+		//paging.setTotalCount(producttemporaryrepository.count(filter));
+		return producttemporaryrepository.findAll(filter,paging);
 	}
 
 	

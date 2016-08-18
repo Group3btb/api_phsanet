@@ -18,13 +18,13 @@ import phsanet.entitys.Site_Detail_Managerment;
 import phsanet.service.implement.SiteDetailManagermenetImplement;
 
 @RestController
-public class ScrapManagerment {
+public class SiteDetailManagerment {
 	
 	@Autowired
 	@Qualifier("scrapmanagermenetimplement")
 	private SiteDetailManagermenetImplement scrapmanegermentimplement;
 	
-	@RequestMapping(value={"/api/scrap"},method = RequestMethod.POST)
+	@RequestMapping(value={"/api/sitedetail"},method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> saveScrap(@RequestBody Site_Detail_Managerment scrap){
 		Map<String,Object> map = new HashMap<String,Object>();
 		if(scrapmanegermentimplement.save(scrap)){
@@ -37,7 +37,7 @@ public class ScrapManagerment {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/scrap"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/sitedetail"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllScrap(){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<Site_Detail_Managerment> arr = new ArrayList<Site_Detail_Managerment>();
@@ -53,7 +53,7 @@ public class ScrapManagerment {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/scrap"},method = RequestMethod.PUT)
+	@RequestMapping(value={"/api/sitedetail"},method = RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateScrap(@RequestBody Site_Detail_Managerment scrap){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -67,10 +67,10 @@ public class ScrapManagerment {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/scrap"},method = RequestMethod.PATCH)
+	@RequestMapping(value={"/api/status"},method = RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updatestatus(@RequestBody Site_Detail_Managerment scrap){
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println(scrap);
+		
 		if(scrapmanegermentimplement.update_status(scrap)){
 			map.put("MESSAG","SUCCESS");
 			map.put("STATUS",true);
@@ -82,7 +82,7 @@ public class ScrapManagerment {
 	}
 	
 	
-	@RequestMapping(value={"/api/scrap/{id}"}, method = RequestMethod.DELETE)
+	@RequestMapping(value={"/api/sitedetail/{id}"}, method = RequestMethod.DELETE)
 	public ResponseEntity<Map<String,Object>> removeScrap(@PathVariable int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(scrapmanegermentimplement.remove(id)){
@@ -95,7 +95,7 @@ public class ScrapManagerment {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/scrap/{id}"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/sitedetail/{id}"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> searchScrap(@PathVariable("id") int id){
 		
 		ArrayList<Site_Detail_Managerment> arr = new ArrayList<Site_Detail_Managerment>();

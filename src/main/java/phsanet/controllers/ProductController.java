@@ -32,7 +32,7 @@ public class ProductController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		ArrayList<Products> allproduct = new ArrayList<Products>();
 		allproduct = productserviceimplement.findAll(filter,pagin);
-		System.out.println("Filter "+ filter.getProductname());
+		//System.out.println("Filter "+ filter.getProductname());
 		phsanet.util.Console.log(filter);
 		phsanet.util.Console.log(pagin);
 		if(allproduct.isEmpty()){

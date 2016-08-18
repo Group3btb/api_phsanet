@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import phsanet.entitys.Products;
-import phsanet.entitys.Temporary_Item;
+
 import phsanet.service.implement.ProductTemporaryImplement;
+import phsanet.util.Paging;
+import phsanet.util.ProductFilter;
+
 
 @RestController
 public class ProductsTemporaryController {
@@ -24,79 +27,25 @@ public class ProductsTemporaryController {
 	@Qualifier("producttemporaryimplement")
 	private ProductTemporaryImplement producttemporaryimplement;
 	
-	@RequestMapping(value={"/api/producttemporary"},method = RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> findAllProductsTemporary(){
+	@RequestMapping(value={"/api/temporary"},method = RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllProductsTemporary(ProductFilter filter,Paging pagin){
 		Map<String,Object> map = new HashMap<String,Object>();
 		ArrayList<Products> allproduct = new ArrayList<>();
-		allproduct = producttemporaryimplement.findAll();
+		allproduct = producttemporaryimplement.findAll(filter,pagin);
 		if(allproduct.isEmpty()){
 			map.put("MESSAG","DATA NOT FOUND");
 			map.put("STATUS",false);
 		}else{
 			map.put("MESSAG","DATA FOUND");
 			map.put("STATUS",true);
+			map.put("PAGE",pagin);
 			map.put("DATA",allproduct);
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/producttemporary/{search}"},method = RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> searchProductsTemporary(@PathVariable("search") String search){
-		Map<String,Object> map = new HashMap<String,Object>();
-		ArrayList<Products> allproduct = new ArrayList<>();
-		allproduct = producttemporaryimplement.findAll();
-		if(allproduct.isEmpty()){
-			map.put("MESSAG","DATA NOT FOUND");
-			map.put("STATUS",false);
-		}else{
-			map.put("MESSAG","DATA FOUND");
-			map.put("STATUS",true);
-			map.put("DATA",allproduct);
-		}
-		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
-	}
 	
-	/*@RequestMapping(value={"/api/producttemporary"},method= RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> saveProductTemporary(@RequestBody Temporary_Item products){
-		Map<String,Object> map = new HashMap<String, Object>();
-		if(producttemporaryimplement.save(products)){
-			map.put("MESSAG","INSERT SUCCESS");
-			map.put("STATUS",true);
-		}else{
-			map.put("MESSAG","INSERT FAIL");
-			map.put("STATUS",false);
-		}
-		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
-	}
-	*/
-	
-/*	@RequestMapping(value={"/api/producttemporaries"},method= RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> save_all_ProductTemporary(@RequestBody ArrayList<Temporary_Item> products){
-		Map<String,Object> map = new HashMap<String, Object>();
-		if(true){
-			map.put("MESSAG","INSERT SUCCESS");
-			map.put("STATUS",true);
-		}else{
-			map.put("MESSAG","INSERT FAIL");
-			map.put("STATUS",false);
-		}
-		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
-	}*/
-	
-	@RequestMapping(value={"/api/producttemporary/{id}"},method= RequestMethod.DELETE)
-	public ResponseEntity<Map<String,Object>> deleteProductTemporary(@PathVariable("id") int id){
-		Map<String,Object> map = new HashMap<String, Object>();
-		if(producttemporaryimplement.remove(id)){
-			map.put("MESSAG","REMOVE SUCCESS");
-			map.put("STATUS",true);
-		}else{
-			map.put("MESSAG","REMOVE FAIL");
-			map.put("STATUS",false);
-		}
-		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
-	}
-	
-	@RequestMapping(value={"/api/producttemporary"},method= RequestMethod.PUT)
+	@RequestMapping(value={"/api/temporary"},method= RequestMethod.PUT)
 	public ResponseEntity<Map<String,Object>> updateProductTemporary(@RequestBody Products product){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(producttemporaryimplement.update(product)){
