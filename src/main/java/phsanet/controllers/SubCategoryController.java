@@ -70,7 +70,8 @@ public class SubCategoryController {
 	}
 	
 	@RequestMapping(value={"/api/subcategory/{id}"} , method = RequestMethod.DELETE)
-	public ResponseEntity<Map<String,Object>> removeSubCategory(@PathVariable int id){
+	public ResponseEntity<Map<String,Object>> removeSubCategory(@PathVariable("id") int id){
+		//System.out.println("api" + id);
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(subcategory.remove(id)){
 			map.put("MESSAG","SUCCESS");

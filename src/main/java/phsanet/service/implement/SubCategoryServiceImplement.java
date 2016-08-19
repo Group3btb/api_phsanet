@@ -27,7 +27,7 @@ public class SubCategoryServiceImplement  implements SubCategoryService  {
 	@Override
 	public boolean remove(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		return subcategoryrepository.remove(id);
 	}
 
 	@Override
