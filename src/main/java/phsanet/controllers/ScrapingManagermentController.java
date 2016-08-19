@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import ch.qos.logback.core.property.ResourceExistsPropertyDefiner;
 import phsanet.entitys.Products;
 import phsanet.entitys.Site_Detail_Managerment;
 import phsanet.entitys.SubCategory;
@@ -128,7 +132,7 @@ public class ScrapingManagermentController {
 		System.out.println(subcategory_id );
 		try {
 			
-			Document document = Jsoup.connect(url).timeout(10000).get();
+			Document document = Jsoup.connect(url).timeout(10000).followRedirects(true).ignoreContentType(true).get();
 			Elements main_selector = document.select(row_selector);
 			
 			/*System.out.println("URL "+scrap.getUrl());*/
