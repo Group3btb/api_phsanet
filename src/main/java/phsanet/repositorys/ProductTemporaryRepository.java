@@ -50,8 +50,6 @@ public interface ProductTemporaryRepository {
 	
 	interface SQL{
 		
-			String count ="";
-	
 			String INSERT_IGNORE="<script> Insert Into temporary_item "
 					+ "	(	"
 					+ "		subcategory_id				,"
@@ -66,7 +64,7 @@ public interface ProductTemporaryRepository {
 					+ "			'name',					"
 					+ "			'price'	   			   ,"
 					+ "			'description'	   	   ,"
-					+ "			 34	   			   	   ,"
+					+ "			 1	   			   	   ,"
 					+ "			'product_image' 		"
 					+ "			WHERE NOT EXISTS(		"
 					+ "			SELECT description FROM temporary_item where trim(both ' ' from description)= trim(both ' ' from 'description') "
@@ -88,6 +86,10 @@ public interface ProductTemporaryRepository {
 					+ "		) "
 					+ "	</foreach> "
 					+ "</script>";	
+			
+			String UPDATE_SUBCATEGORY=" Update temporary_item set";
+			
+			
 		}
 	
 }

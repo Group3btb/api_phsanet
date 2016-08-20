@@ -164,7 +164,7 @@ public interface ProductRepository {
 				+ "			'name',					"
 				+ "			'price'	   			   ,"
 				+ "			'description'	   	   ,"
-				+ "			 34	   			   	   ,"
+				+ "			 1	   			   	   ,"
 				+ "			'product_image' 		"
 				+ "			WHERE NOT EXISTS(		"
 				+ "			SELECT description FROM product where trim(both ' ' from description)= trim(both ' ' from 'description') "
