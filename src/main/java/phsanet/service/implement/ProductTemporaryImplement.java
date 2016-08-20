@@ -35,7 +35,7 @@ public class ProductTemporaryImplement implements ProductTemporaryService {
 	@Override
 	public ArrayList<Products> findAll(ProductFilter filter,Paging paging) {
 		// TODO Auto-generated method stub
-		//paging.setTotalCount(producttemporaryrepository.count(filter));
+		paging.setLimit((int) producttemporaryrepository.count(filter));
 		return producttemporaryrepository.findAll(filter,paging);
 	}
 

@@ -80,7 +80,7 @@ public class TemporaryproProvider {
 				  WHERE("	main.category_name = #{filter.maincategory}");
 			  }
 			  if(filter.getSubcategoryname()!=null){
-				  WHERE("	cat.category_name = #{filter.subcategory}");
+				  WHERE("	cat.category_name = #{filter.subcategoryname}");
 			  }
 			 
 			  
