@@ -38,14 +38,14 @@ public class ProductProvider {
 				  WHERE(" Lower(pro.product_name) Like '%'|| Lower(#{filter.productname}) ||'%' ");
 			  }
 			  if(filter.getProductname()!=null && filter.getSubcategoryname()!=null){
-				  WHERE("pro_name Like '%'|| #{filter.productname} ||'%' And sub_cateogry_name '%'||#{filter.subcategoryname}");
+				  WHERE("Lower(pro_name) Like '%'|| Lower(#{filter.productname}) ||'%' And Lower(sub_cateogry_name) '%'||Lower(#{filter.subcategoryname})");
 				  
 			  }
 			  if(filter.getMaincategory() !=null){
-				  WHERE("	main.category_name = #{filter.maincategory}");
+				  WHERE("	Lower(main.category_name) = Lower(#{filter.maincategory})");
 			  }
 			  if(filter.getSubcategoryname()!=null){
-				  WHERE("	cat.category_name = #{filter.subcategoryname}");
+				  WHERE("	Lower(cat.category_name) = Lower(#{filter.subcategoryname})");
 			  }
 			
 			  ORDER_BY("pro_id desc LIMIT #{paging.limit} OFFSET #{paging.offset} ");
@@ -74,15 +74,16 @@ public class ProductProvider {
 				  WHERE(" Lower(pro.product_name) Like '%'|| Lower(#{filter.productname}) ||'%' ");
 			  }
 			  if(filter.getProductname()!=null && filter.getSubcategoryname()!=null){
-				  WHERE("pro_name Like '%'|| #{filter.productname} ||'%' And sub_cateogry_name '%'||#{filter.subcategoryname}");
+				  WHERE("Lower(pro_name) Like '%'|| Lower(#{filter.productname}) ||'%' And Lower(sub_cateogry_name) '%'||Lower(#{filter.subcategoryname})");
 				  
 			  }
 			  if(filter.getMaincategory() !=null){
-				  WHERE("	main.category_name = #{filter.maincategory}");
+				  WHERE("	Lower(main.category_name) = Lower(#{filter.maincategory})");
 			  }
 			  if(filter.getSubcategoryname()!=null){
-				  WHERE("	cat.category_name = #{filter.subcategoryname}");
+				  WHERE("	Lower(cat.category_name) = Lower(#{filter.subcategoryname})");
 			  }
+			
 			 
 			  
 		  }}.toString();

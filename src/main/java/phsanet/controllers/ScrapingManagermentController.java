@@ -45,6 +45,8 @@ public class ScrapingManagermentController {
 	@RequestMapping(value={"/api/startscrap"} , method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> start_scraping(@RequestBody Web_Source web){
 		
+		System.out.println(web.getWebsite()+" ID "+web.getWeb_source_id()+" URL "+web.getUrl());
+		
 		Map<String,Object> map = new HashMap<String,Object>();
 		
 		try{
@@ -128,6 +130,7 @@ public class ScrapingManagermentController {
 		System.out.println(selector_descride);
 		System.out.println(web_source_id);
 		System.out.println(subcategory_id );
+		
 		try {
 			
 			Document document = Jsoup.connect(url).timeout(10000).followRedirects(true).ignoreContentType(true).get();

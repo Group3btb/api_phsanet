@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import phsanet.entitys.Products;
@@ -43,6 +44,9 @@ public interface ProductTemporaryRepository {
 	
 	@Insert(SQL.INSERT_IGNORE)
 	public boolean save(@Param("all_product") ArrayList<Products> all_product);
+	
+	@Update(SQL.UPDATE_SUBCATEGORY)
+	public boolean update(Products product);
 		
 	//@Select(SQL.count)
 	@SelectProvider(type=TemporaryproProvider.class, method = "selectcount")
@@ -87,7 +91,7 @@ public interface ProductTemporaryRepository {
 					+ "	</foreach> "
 					+ "</script>";	
 			
-			String UPDATE_SUBCATEGORY=" Update temporary_item set";
+			String UPDATE_SUBCATEGORY=" Update temporary_item set subcategory_id=#{subcategory.subcategory_id} Where product_id = #{product_id}";
 			
 			
 		}

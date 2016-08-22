@@ -29,7 +29,7 @@ public class ProductTemporaryImplement implements ProductTemporaryService {
 	@Override
 	public boolean update(Products product) {
 		// TODO Auto-generated method stub
-		return false;
+		return producttemporaryrepository.update(product);
 	}
 
 	@Override
