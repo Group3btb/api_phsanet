@@ -120,7 +120,9 @@ public class ScrapingManagermentController {
 		//String website 				= 	scrap.getWeb_source().getWebsite().trim();
 		int web_source_id 			=   scrap.getWeb_source().getWeb_source_id();
 		int subcategory_id 			= 	scrap.getSubcategory().getSubcategory_id();
+		String web_url = scrap.getWeb_source().getUrl();
 		
+		System.out.println("Web url "+web_url);
 		System.out.println(url);
 		System.out.println(row_selector);
 		System.out.println(selector_product_name);
@@ -175,7 +177,7 @@ public class ScrapingManagermentController {
 			Elements e_descride = main_selector.select(selector_descride);
 			for(Element e : e_descride){
 				System.out.println("Detail "+e.attr("href"));
-				all_describe.add(url+e.attr("href"));
+				all_describe.add(web_url+e.attr("href"));
 			}
 		
 			int i = 0;
