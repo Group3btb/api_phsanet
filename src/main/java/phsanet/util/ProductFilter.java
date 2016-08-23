@@ -5,6 +5,8 @@ public class ProductFilter {
 	private String maincategory;
 	private String category;
 	private String subcategoryname;
+	private String productname;
+	private String website;
 	
 	public String getMaincategory() {
 		return maincategory;
@@ -38,8 +40,6 @@ public class ProductFilter {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	private String productname;
-	private String website;
 	
 	@Override
 	public String toString() {

@@ -26,7 +26,7 @@ public interface ListCategoryRepository {
 			+" From main_category    "
 			+" Order By maincategory_id"
 			+ "	LIMIT "
-			+ "		8 "
+			+ "		7 "
 			+ "	OFFSET "
 			+ "		1 ")
 	@Results({

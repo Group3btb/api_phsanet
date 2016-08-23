@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.ibatis.jdbc.SQL;
 
+
 import phsanet.util.ProductFilter;
 
 public class TemporaryproProvider {
@@ -18,6 +19,7 @@ public class TemporaryproProvider {
 						+ "	pro.product_image as pro_image					,"
 						+ "	pro.price as pro_price							,"
 						+ "	pro.description as pro_description				,"
+						+ "	pro.status as pro_status						,"
 						+ "	sub.subcategory_id as sub_id					,"
 						+ "	sub.subcategory_name as sub_category_name		,"
 						+ "	sub.description as sub_description				,"
@@ -49,6 +51,8 @@ public class TemporaryproProvider {
 			  if(filter.getSubcategoryname()!=null){
 				  WHERE("	cat.category_name = #{filter.subcategoryname}");
 			  }
+			  
+			  WHERE(" Lower(pro.status) <> 'yes'");
 			
 			  ORDER_BY("pro_id desc LIMIT #{paging.limit} OFFSET #{paging.offset} ");
 			  
@@ -82,7 +86,8 @@ public class TemporaryproProvider {
 			  if(filter.getSubcategoryname()!=null){
 				  WHERE("	cat.category_name = #{filter.subcategoryname}");
 			  }
-			 
+			  
+			  WHERE(" Lower(pro.status) <> 'yes' ");
 			  
 		  }}.toString();
 		}

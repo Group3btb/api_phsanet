@@ -53,4 +53,16 @@ public class ProductTemporaryImplement implements ProductTemporaryService {
 		return null;
 	}
 
+	@Override
+	public Products find_into_product(int id) {
+		// TODO Auto-generated method stub
+		return producttemporaryrepository.find_into_product(id);
+	}
+
+	@Override
+	public boolean update_status( String status,int id) {
+		// TODO Auto-generated method stub
+		return producttemporaryrepository.update_status(status,id);
+	}
+
 }

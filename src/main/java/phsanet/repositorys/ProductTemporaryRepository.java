@@ -48,11 +48,12 @@ public interface ProductTemporaryRepository {
 	@Update(SQL.UPDATE_SUBCATEGORY)
 	public boolean update(Products product);
 	
+	@Select(SQL.FIND_INTO_PRODUCT)
+	public Products find_into_product(int id);
 	
-	public boolean save_into_product(ArrayList<Products> products);
+	@Update(SQL.UPDATE_STATUS)
+	public boolean update_status(@Param("status")String  status, @Param("id")int id);
 	
-	public boolean update_status(ArrayList<Integer> id, String  status);
-		
 	//@Select(SQL.count)
 	@SelectProvider(type=TemporaryproProvider.class, method = "selectcount")
 	public long count(@Param("filter") ProductFilter filter);
@@ -66,14 +67,16 @@ public interface ProductTemporaryRepository {
 					+ "		price						,"
 					+ " 	description					,"
 					+ "		web_source_id 				,"
+					+ "		status						,"
 					+ "		product_image			  	"
 					+ "	)"
 					+ "		(SELECT 					"
-					+ "			1,					"
+					+ "			1,					    "
 					+ "			'name',					"
 					+ "			'price'	   			   ,"
 					+ "			'description'	   	   ,"
 					+ "			 1	   			   	   ,"
+					+ "			 '1'	   			   ,"
 					+ "			'product_image' 		"
 					+ "			WHERE NOT EXISTS(		"
 					+ "			SELECT description FROM temporary_item where trim(both ' ' from description)= trim(both ' ' from 'description') "
@@ -88,6 +91,7 @@ public interface ProductTemporaryRepository {
 					+ "				#{product.price}						,"
 					+ "				#{product.description}					,"
 					+ "				#{product.web.web_source_id} 			,"
+					+ "				'no'						 			,"
 					+ "				#{product.product_image} 				 "
 					+ "			WHERE NOT EXISTS("
 					+ "				SELECT description FROM temporary_item where trim(both ' ' from description)= trim(both ' ' from #{product.description})"
@@ -98,6 +102,9 @@ public interface ProductTemporaryRepository {
 			
 			String UPDATE_SUBCATEGORY=" Update temporary_item set subcategory_id=#{subcategory.subcategory_id} Where product_id = #{product_id}";
 			
+			String FIND_INTO_PRODUCT="Select * From temporary_item where product_id = #{id}";
+			
+			String UPDATE_STATUS = "Update temporary_item set status = #{status} Where product_id = #{id} ";
 			
 		}
 	

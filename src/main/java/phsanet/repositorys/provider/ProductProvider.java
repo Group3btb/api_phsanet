@@ -45,7 +45,11 @@ public class ProductProvider {
 				  WHERE("	Lower(main.category_name) = Lower(#{filter.maincategory})");
 			  }
 			  if(filter.getSubcategoryname()!=null){
-				  WHERE("	Lower(sub_category_name) = Lower(#{filter.subcategoryname})");
+				  WHERE("	Lower(sub.subcategory_name) = Lower(#{filter.subcategoryname})");
+			  }
+			  
+			  if(filter.getWebsite()!=null){
+				  WHERE("	Lower(web.website) = Lower(#{filter.website})");
 			  }
 			
 			  ORDER_BY("pro_id desc LIMIT #{paging.limit} OFFSET #{paging.offset} ");
@@ -81,9 +85,12 @@ public class ProductProvider {
 				  WHERE("	Lower(main.category_name) = Lower(#{filter.maincategory})");
 			  }
 			  if(filter.getSubcategoryname()!=null){
-				  WHERE("	Lower(sub_category_name) = Lower(#{filter.subcategoryname})");
+				  WHERE("	Lower(sub.subcategory_name) = Lower(#{filter.subcategoryname})");
 			  }
-			
+			  
+			  if(filter.getWebsite()!=null){
+				  WHERE("	Lower(web.website) = Lower(#{filter.website})");
+			  }
 			 
 			  
 		  }}.toString();
