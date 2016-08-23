@@ -4,6 +4,7 @@ public class ProductFilter {
 	
 	private String maincategory;
 	private String category;
+	private String subcategoryname;
 	
 	public String getMaincategory() {
 		return maincategory;
@@ -17,7 +18,7 @@ public class ProductFilter {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	private String subcategoryname;
+	
 	
 	public String getSubcategoryname() {
 		return subcategoryname;

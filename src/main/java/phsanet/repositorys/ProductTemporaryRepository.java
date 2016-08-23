@@ -47,6 +47,11 @@ public interface ProductTemporaryRepository {
 	
 	@Update(SQL.UPDATE_SUBCATEGORY)
 	public boolean update(Products product);
+	
+	
+	public boolean save_into_product(ArrayList<Products> products);
+	
+	public boolean update_status(ArrayList<Integer> id, String  status);
 		
 	//@Select(SQL.count)
 	@SelectProvider(type=TemporaryproProvider.class, method = "selectcount")
