@@ -49,6 +49,15 @@ public interface ProductTemporaryRepository {
 	public boolean update(Products product);
 	
 	@Select(SQL.FIND_INTO_PRODUCT)
+	@Results({
+		@Result(property="product_id" 										,	column="product_id"),
+		@Result(property="product_name" 									,	column="product_name"),
+		@Result(property="product_image" 									,	column="product_image"),
+		@Result(property="price"											,	column="price"),
+		@Result(property="description"										,	column="description"),
+		@Result(property="subcategory.subcategory_id"						,	column="subcategory_id"),
+		@Result(property="web.web_source_id"								,	column="web_source_id")
+	})
 	public Products find_into_product(int id);
 	
 	@Update(SQL.UPDATE_STATUS)

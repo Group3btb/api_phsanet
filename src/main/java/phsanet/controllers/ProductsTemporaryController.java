@@ -52,14 +52,19 @@ public class ProductsTemporaryController {
 		ArrayList<Products> all_product = new ArrayList<>();
 		
 		System.out.println("API "+allid);
-		
+		int i=0;
+		try{
 		for(Object id : allid){
-			all_product.add(producttemporaryimplement.find_into_product(Integer.valueOf(id.toString())));
-			producttemporaryimplement.update_status("yes",Integer.valueOf(id.toString()));
-			System.out.println("ID "+Integer.valueOf(id.toString()));
+			all_product.add((Products)producttemporaryimplement.find_into_product(Integer.valueOf(id.toString())));
+			//producttemporaryimplement.update_status("yes",Integer.valueOf(id.toString()));
+			System.out.println("ID "+Integer.valueOf(id.toString())+" s "+all_product.get(i).getProduct_id());
+			i++;
+		}
+		}catch(Exception ex){
+			System.out.println("Error "+ex.getMessage());
 		}
 		
-		System.out.println(all_product);
+		System.out.println("all product "+all_product);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
