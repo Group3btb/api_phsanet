@@ -1,12 +1,19 @@
 package phsanet.util;
 
 public class ProductFilter {
-	
 	private String maincategory;
 	private String category;
 	private String subcategoryname;
 	private String productname;
 	private String website;
+	
+	public ProductFilter(){
+		  maincategory = null;
+		  category = null;
+		  subcategoryname = null;
+		  productname = null;
+		  website = null;
+	}
 	
 	public String getMaincategory() {
 		return maincategory;
@@ -40,12 +47,18 @@ public class ProductFilter {
 	public void setWebsite(String website) {
 		this.website = website;
 	}
-	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "productname "+this.productname +" subcategory "+this.subcategoryname+" website "+this.website;
+		return "ProductFilter [maincategory=" + maincategory + ", category=" + category + ", subcategoryname="
+				+ subcategoryname + ", productname=" + productname + ", website=" + website + "]";
 	}
+	
+	
+	/*@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "productname "+this.productname +" subcategory "+this.subcategoryname+" website "+this.website+" maincategory "+this.maincategory;
+	}*/
 	
 }
 

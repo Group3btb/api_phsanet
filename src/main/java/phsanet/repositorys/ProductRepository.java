@@ -53,7 +53,7 @@ public interface ProductRepository {
 	
 	@Delete(SQL.remove_product)
 	public boolean remove(int id);
-	
+			
 	@Update(SQL.update_product)
 	public boolean update(Products product);
 
