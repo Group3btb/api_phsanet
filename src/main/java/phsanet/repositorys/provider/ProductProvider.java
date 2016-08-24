@@ -5,7 +5,7 @@ import java.util.Map;
 import org.apache.ibatis.jdbc.SQL;
 import phsanet.util.ProductFilter;
 
-public class ProductProvider {
+public class ProductProvider { 
 	public String selectPersonLike(Map<String, Object> params) {
 		  final ProductFilter filter = (ProductFilter) params.get("filter");
 		  System.out.println("=>" + filter);
