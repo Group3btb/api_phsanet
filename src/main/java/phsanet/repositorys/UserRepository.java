@@ -45,6 +45,9 @@ public interface UserRepository {
 	@Delete(SQL.remove)
 	public boolean delete(int id);
 	
+	@Select("SELECT user_id, user_name, password, email, role FROM user_phsanet WHERE email=#{email}")
+	public User findUserByEmail(String email);
+	
 	interface SQL{
 		
 		String findall= " Select * From user_phsanet ";

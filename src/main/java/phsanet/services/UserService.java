@@ -10,4 +10,5 @@ public interface UserService {
 	public boolean save(User user);
 	public boolean update(User user);
 	public boolean remove(int id);
+	public User findUserByEmail(String email);
 }

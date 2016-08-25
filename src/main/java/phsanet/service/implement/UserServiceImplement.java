@@ -45,5 +45,10 @@ public class UserServiceImplement implements UserService {
 		// TODO Auto-generated method stub
 		return userrepository.delete(id);
 	}
+
+	@Override
+	public User findUserByEmail(String email) {
+		return userrepository.findUserByEmail(email);
+	}
 	
 }
