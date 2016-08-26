@@ -39,8 +39,8 @@ public class ProductProvider {
 			  if(filter.getProductname()!= null &&  filter.getMaincategory()==null  && filter.getSubcategoryname()==null){
 				  WHERE(" Lower(pro.product_name) Like '%'|| Lower(#{filter.productname}) ||'%' ");
 			  }
-			  if(filter.getProductname()!=null && filter.getSubcategoryname()!=null){
-				  WHERE("(Lower(pro.product_name) Like '%'|| Lower(#{filter.productname}) ||'%') AND (Lower(sub.subcategory_name) = Lower(#{filter.subcategoryname}))");
+			  if(filter.getProductname()!=null || filter.getSubcategoryname()!=null){
+				  WHERE("(Lower(pro.product_name) Like '%'|| Lower(#{filter.productname}) ||'%') Or (Lower(sub.subcategory_name) = Lower(#{filter.subcategoryname}))");
 				  
 			  }
 			  
