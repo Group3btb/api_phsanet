@@ -170,7 +170,7 @@ public class ScrapingManagermentController {
 			//ArrayList<String> price = new ArrayList<String>();
 			Elements e_price = main_selector.select(selector_price);
 			for(Element e:e_price){
-				 System.out.println(e.text());
+				System.out.println(e.text());
 				all_price.add(e.text());
 			}
 		

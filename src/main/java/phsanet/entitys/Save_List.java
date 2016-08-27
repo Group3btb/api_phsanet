@@ -4,6 +4,13 @@ public class Save_List {
 	private int list_id;
 	private Products product;
 	private User user;
+	private Web_Source web;
+	public Web_Source getWeb() {
+		return web;
+	}
+	public void setWeb(Web_Source web) {
+		this.web = web;
+	}
 	public int getList_id() {
 		return list_id;
 	}

@@ -36,11 +36,11 @@ public class SaveListController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/svaelist"},method = RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>> findAllCategory(){
+	@RequestMapping(value={"/api/svaelist/{id}"},method = RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findAllCategory(@PathVariable("id") int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<Save_List> arr = new ArrayList<Save_List>();
-		arr = savelistimplement.findAll();
+		arr = savelistimplement.findAll(id);
 		if(arr.isEmpty()){
 			map.put("MESSAG","DATA NOT FOUND");
 			map.put("STATUS",false);

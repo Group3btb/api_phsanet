@@ -35,9 +35,9 @@ public class SaveListServiceImplement implements SaveListService {
 	}
 
 	@Override
-	public ArrayList<Save_List> findAll() {
+	public ArrayList<Save_List> findAll(int user_id) {
 		// TODO Auto-generated method stub
-		return savelistrepository.findAll();
+		return savelistrepository.findAll(user_id);
 	}
 
 }

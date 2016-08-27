@@ -8,5 +8,5 @@ public interface SaveListService {
 	public boolean save(Save_List savelist);
 	public boolean update(Save_List savelist);
 	public boolean remove(int id);
-	public ArrayList<Save_List> findAll();
+	public ArrayList<Save_List> findAll(int user_id);
 }
