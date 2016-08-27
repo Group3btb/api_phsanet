@@ -61,5 +61,9 @@ public class Products {
 		this.description = description;
 	}
 	
-	
+	@Override
+	public String toString() {
+	// TODO Auto-generated method stub
+		return this.product_name+ "  "+this.product_image +" "+this.price+"  "+this.description+" webid "+this.web.getWeb_source_id()+" subid "+this.subcategory.getSubcategory_id();
+	}
 }

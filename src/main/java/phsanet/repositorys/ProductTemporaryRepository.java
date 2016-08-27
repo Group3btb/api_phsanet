@@ -2,6 +2,7 @@ package phsanet.repositorys;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
@@ -63,6 +64,9 @@ public interface ProductTemporaryRepository {
 	@Update(SQL.UPDATE_STATUS)
 	public boolean update_status(@Param("status")String  status, @Param("id")int id);
 	
+	@Delete(SQL.REMOVE)
+	public boolean remove(int id);
+	
 	//@Select(SQL.count)
 	@SelectProvider(type=TemporaryproProvider.class, method = "selectcount")
 	public long count(@Param("filter") ProductFilter filter);
@@ -111,10 +115,19 @@ public interface ProductTemporaryRepository {
 			
 			String UPDATE_SUBCATEGORY=" Update temporary_item set subcategory_id=#{subcategory.subcategory_id} Where product_id = #{product_id}";
 			
-			String FIND_INTO_PRODUCT="Select * From temporary_item where product_id = #{id}";
+			String FIND_INTO_PRODUCT="Select "
+					+ " product_id 			,"
+					+ " product_name 		,"
+					+ " price	      		,"
+					+ " product_image 		,"
+					+ " subcategory_id 		,"
+					+ " web_source_id 		,"
+					+ " description 		 "
+					+ " From temporary_item where product_id = #{id}";
 			
 			String UPDATE_STATUS = "Update temporary_item set status = #{status} Where product_id = #{id} ";
-			
+		
+			String REMOVE ="Delete From temporary_item Where product_id=#{id}";
 		}
 	
 }

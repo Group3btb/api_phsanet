@@ -23,7 +23,7 @@ public class ProductTemporaryImplement implements ProductTemporaryService {
 	@Override
 	public boolean remove(int id) {
 		// TODO Auto-generated method stub
-		return false;
+		return producttemporaryrepository.remove(id);
 	}
 
 	@Override
@@ -56,6 +56,7 @@ public class ProductTemporaryImplement implements ProductTemporaryService {
 	@Override
 	public Products find_into_product(int id) {
 		// TODO Auto-generated method stub
+		//System.out.println(producttemporaryrepository.find_into_product(id));
 		return producttemporaryrepository.find_into_product(id);
 	}
 

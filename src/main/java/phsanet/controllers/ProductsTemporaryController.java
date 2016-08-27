@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import phsanet.entitys.Products;
 
 import phsanet.service.implement.ProductTemporaryImplement;
@@ -52,19 +53,20 @@ public class ProductsTemporaryController {
 		ArrayList<Products> all_product = new ArrayList<>();
 		
 		System.out.println("API "+allid);
+		
 		int i=0;
 		try{
 		for(Object id : allid){
-			all_product.add((Products)producttemporaryimplement.find_into_product(Integer.valueOf(id.toString())));
-			//producttemporaryimplement.update_status("yes",Integer.valueOf(id.toString()));
-			System.out.println("ID "+Integer.valueOf(id.toString())+" s "+all_product.get(i).getProduct_id());
+			all_product.add(producttemporaryimplement.find_into_product(Integer.valueOf(id.toString())));
+			producttemporaryimplement.update_status("yes",Integer.valueOf(id.toString()));
+			//System.out.println("ID "+Integer.valueOf(id.toString())+" s "+all_product.get(i).getProduct_id());
 			i++;
 		}
 		}catch(Exception ex){
 			System.out.println("Error "+ex.getMessage());
 		}
 		
-		System.out.println("all product "+all_product);
+		System.out.println("all product "+all_product.get(0).getProduct_name());
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
@@ -76,6 +78,20 @@ public class ProductsTemporaryController {
 			map.put("STATUS",true);
 		}else{
 			map.put("MESSAG","UPDATE FAIL");
+			map.put("STATUS",false);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
+	
+	@RequestMapping(value={"/api/temporary/{id}"},method= RequestMethod.DELETE)
+	public ResponseEntity<Map<String,Object>> removeProductTemporary(@PathVariable("id") int id){
+		Map<String,Object> map = new HashMap<String, Object>();
+		if(producttemporaryimplement.remove(id)){
+			map.put("MESSAG","DELTE SUCCESS");
+			map.put("STATUS",true);
+		}else{
+			map.put("MESSAG","DELTE FAIL");
 			map.put("STATUS",false);
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
