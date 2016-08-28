@@ -36,7 +36,7 @@ public class SaveListController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/svaelist/{id}"},method = RequestMethod.GET)
+	@RequestMapping(value={"/api/savelist/{id}"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllCategory(@PathVariable("id") int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<Save_List> arr = new ArrayList<Save_List>();
@@ -66,8 +66,8 @@ public class SaveListController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/savelist/{id}"}, method = RequestMethod.DELETE)
-	public ResponseEntity<Map<String,Object>> removeCategory(@PathVariable int id){
+	@RequestMapping(value={"/api/savelist/{list_id}"}, method = RequestMethod.DELETE)
+	public ResponseEntity<Map<String,Object>> removeSaveList(@PathVariable int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(savelistimplement.remove(id)){
 			map.put("MESSAG","SUCCESS");
