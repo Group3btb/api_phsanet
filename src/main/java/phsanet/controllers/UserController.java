@@ -42,11 +42,11 @@ public class UserController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value={"/api/user/{search}"} , method = RequestMethod.GET)
-	public ResponseEntity<Map<String,Object>>searchUser(@PathVariable("search") String search){
+	@RequestMapping(value={"/api/user/{userid}"} , method = RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>>findUserById(@PathVariable("userid") int uid){
 		Map<String,Object> map = new HashMap<String, Object>();
 		ArrayList<User> arr = new ArrayList<User>();
-		arr = userserviceimplement.search(search);
+		arr = userserviceimplement.findUserById(uid);
 		if(arr.isEmpty()){
 			map.put("MESSAG","DATA NOT FOUND!");
 			map.put("STATUS",false);

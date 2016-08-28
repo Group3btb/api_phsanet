@@ -23,9 +23,9 @@ public class UserServiceImplement implements UserService {
 	}
 
 	@Override
-	public ArrayList<User> search(String search) {
+	public ArrayList<User> findUserById(int uid) {
 		// TODO Auto-generated method stub
-		return userrepository.search(search);
+		return userrepository.search(uid);
 	}
 
 	@Override

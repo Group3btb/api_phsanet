@@ -33,7 +33,7 @@ public interface UserRepository {
 		@Result(property="password"		,	column="password"),
 		@Result(property="email"		,	column="email")
 	})
-	public ArrayList<User> search(String search);
+	public ArrayList<User> search(int uid);
 	
 	
 	@Insert(SQL.save)
@@ -52,7 +52,7 @@ public interface UserRepository {
 		
 		String findall= " Select * From user_phsanet ";
 		
-		String search =	" Select * From user_phsanet Where Lower(user_name) Like '%'||Lower(#{search})||'%'";
+		String search =	" Select * From user_phsanet Where user_id=#{uid}";
 		
 		String save="	Insert Into user_phsanet (user_name,password,email, role)  "
 				+ "		Values(#{user_name},#{password},#{email},#{role})	 ";
