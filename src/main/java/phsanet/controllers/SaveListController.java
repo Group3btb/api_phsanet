@@ -67,7 +67,7 @@ public class SaveListController {
 	}
 	
 	@RequestMapping(value={"/api/savelist/{list_id}"}, method = RequestMethod.DELETE)
-	public ResponseEntity<Map<String,Object>> removeSaveList(@PathVariable int id){
+	public ResponseEntity<Map<String,Object>> removeSaveList(@PathVariable("list_id") int id){
 		Map<String,Object> map = new HashMap<String, Object>();
 		if(savelistimplement.remove(id)){
 			map.put("MESSAG","SUCCESS");
