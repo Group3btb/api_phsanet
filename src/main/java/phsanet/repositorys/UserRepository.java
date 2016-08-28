@@ -54,8 +54,8 @@ public interface UserRepository {
 		
 		String search =	" Select * From user_phsanet Where Lower(user_name) Like '%'||Lower(#{search})||'%'";
 		
-		String save="	Insert Into user_phsanet (user_name,password,email)  "
-				+ "		Values(#{user_name},#{password},#{email})	 ";
+		String save="	Insert Into user_phsanet (user_name,password,email, role)  "
+				+ "		Values(#{user_name},#{password},#{email},#{role})	 ";
 		
 		String update="	Update user_phsanet SET		 "
 				+ " user_name=#{user_name} 	,"
