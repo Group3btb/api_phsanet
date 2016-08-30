@@ -21,13 +21,12 @@ public class AutoScrapController {
 	@Autowired
 	@Qualifier("productserviceimplement")
 	private ProductServiceImplement productserviceimplement;
-	
+
 	//  It will run every hour of every day
 	//@Scheduled(cron = "0 0 * * * *")
-	//@Scheduled(cron="*/10 * * * * *")
+	@Scheduled(cron="*/10 * * * * *")
 	public void autoscrap(){
 		System.out.println("RUNNING....");
-		
 		try{	
 			for(Site_Detail_Managerment scrap :scrapmanagermenetimplement.findAll()){
 				if(scrap.getStatus().toLowerCase().trim().compareTo("yes")==0){

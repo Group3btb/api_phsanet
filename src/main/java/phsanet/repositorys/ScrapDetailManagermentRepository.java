@@ -15,7 +15,7 @@ import phsanet.entitys.Site_Detail_Managerment;
 
 @Repository
 @Qualifier("Scrapmanagermentrepository")
-public interface SiteDetailManagermentRepository {
+public interface ScrapDetailManagermentRepository {
 	
 	@Select(SQL.findAll)
 	@Results({
@@ -92,13 +92,15 @@ public interface SiteDetailManagermentRepository {
 				+ " 	From scrap scp Inner Join web_source web 		 "
 				+ "		on scp.web_source_id = web.web_source_id		 "
 				+ "		Inner Join subcategory sub 						 "
-				+ "		on scp.subcategory_id = sub.subcategory_id		 ";
+				+ "		on scp.subcategory_id = sub.subcategory_id		 "
+				+ "		Order By scp.scrap_id 							 ";
 		
 		String save = "Insert Into scrap"
-				+ "		(url,web_source_id,subcategory_id) 			"
+				+ "		(url,web_source_id,subcategory_id,status) 			"
 				+ "		Values(#{url}							   ,"
 				+ "		#{web_source.web_source_id}				   ,"
-				+ "		#{subcategory.subcategory_id}) 				";
+				+ "		#{subcategory.subcategory_id}			   ,"
+				+ "		'no'						) 				";
 		
 		String search="Select "
 				

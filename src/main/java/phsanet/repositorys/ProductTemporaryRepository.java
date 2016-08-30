@@ -29,7 +29,7 @@ public interface ProductTemporaryRepository {
 		@Result(property="product_image" 									,	column="pro_image"),
 		@Result(property="price"											,	column="pro_price"),
 		@Result(property="description"										,	column="pro_description"),
-		//@Result(property="link"							,	column="pro_link"),
+	
 		@Result(property="subcategory.subcategory_id"						,	column="sub_id"),
 		@Result(property="subcategory.subcategory_name"						,	column="sub_category_name"),
 		@Result(property="subcategory.description"							,	column="sub_description"),
@@ -51,13 +51,13 @@ public interface ProductTemporaryRepository {
 	
 	@Select(SQL.FIND_INTO_PRODUCT)
 	@Results({
-		@Result(property="product_id" 										,	column="product_id"),
-		@Result(property="product_name" 									,	column="product_name"),
-		@Result(property="product_image" 									,	column="product_image"),
-		@Result(property="price"											,	column="price"),
-		@Result(property="description"										,	column="description"),
-		@Result(property="subcategory.subcategory_id"						,	column="subcategory_id"),
-		@Result(property="web.web_source_id"								,	column="web_source_id")
+		@Result(property="product_id" 										,	column="pro_id"),
+		@Result(property="product_name" 									,	column="pro_name"),
+		@Result(property="product_image" 									,	column="pro_image"),
+		@Result(property="price"											,	column="pro_price"),
+		@Result(property="description"										,	column="pro_description"),
+		@Result(property="subcategory.subcategory_id"						,	column="sub_id"),
+		@Result(property="web.web_source_id"								,	column="web_id")
 	})
 	public Products find_into_product(int id);
 	
@@ -66,6 +66,9 @@ public interface ProductTemporaryRepository {
 	
 	@Delete(SQL.REMOVE)
 	public boolean remove(int id);
+	
+	@Delete(SQL.REMOVEALL)
+	public boolean removeall();
 	
 	//@Select(SQL.count)
 	@SelectProvider(type=TemporaryproProvider.class, method = "selectcount")
@@ -116,18 +119,20 @@ public interface ProductTemporaryRepository {
 			String UPDATE_SUBCATEGORY=" Update temporary_item set subcategory_id=#{subcategory.subcategory_id} Where product_id = #{product_id}";
 			
 			String FIND_INTO_PRODUCT="Select "
-					+ " product_id 			,"
-					+ " product_name 		,"
-					+ " price	      		,"
-					+ " product_image 		,"
-					+ " subcategory_id 		,"
-					+ " web_source_id 		,"
-					+ " description 		 "
-					+ " From temporary_item where product_id = #{id}";
+					+ " product_id 		as pro_id			,"
+					+ " product_name 	as pro_name			,"
+					+ " price	      	as pro_price		,"
+					+ " product_image 	as pro_image		,"
+					+ " subcategory_id 	as sub_id			,"
+					+ " web_source_id 	as web_id			,"
+					+ " description 	as pro_description	 "
+					+ " From temporary_item where product_id = #{id} ";
 			
 			String UPDATE_STATUS = "Update temporary_item set status = #{status} Where product_id = #{id} ";
 		
 			String REMOVE ="Delete From temporary_item Where product_id=#{id}";
+			
+			String REMOVEALL = "Delete From temporary_item";
 		}
 	
 }

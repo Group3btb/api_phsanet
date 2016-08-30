@@ -36,6 +36,7 @@ public class MainCategoryController {
 			map.put("STATUS",true);
 			map.put("DATA",maincate);
 		}
+		System.out.println("Hello API");
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	

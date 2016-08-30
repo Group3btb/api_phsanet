@@ -9,15 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import phsanet.entitys.Products;
-
+import phsanet.service.implement.ProductServiceImplement;
 import phsanet.service.implement.ProductTemporaryImplement;
 import phsanet.util.Paging;
 import phsanet.util.ProductFilter;
@@ -28,6 +28,20 @@ public class ProductsTemporaryController {
 	@Autowired
 	@Qualifier("producttemporaryimplement")
 	private ProductTemporaryImplement producttemporaryimplement;
+	
+	@Autowired
+	@Qualifier("productserviceimplement")
+	private ProductServiceImplement productserviceimplement;
+	
+	/*@Scheduled(cron="0 0 12 1/7 * ? *")
+	public void autoscrap(){
+		
+		try{	
+			producttemporaryimplement.removeall();
+		}catch(Exception ex){
+			System.out.println("Error auto scrap "+ex.getMessage());
+		}
+	}*/
 	
 	@RequestMapping(value={"/api/temporary"},method = RequestMethod.GET)
 	public ResponseEntity<Map<String,Object>> findAllProductsTemporary(ProductFilter filter,Paging pagin){
@@ -46,27 +60,44 @@ public class ProductsTemporaryController {
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
-	@SuppressWarnings("unused")
+	@RequestMapping(value={"/api/temporary/{id}"},method = RequestMethod.GET)
+	public ResponseEntity<Map<String,Object>> findOneProductsTemporary(@PathVariable("id") int id){
+		Map<String,Object> map = new HashMap<String,Object>();
+		Products product = new Products();
+		product = producttemporaryimplement.find_into_product(id);
+		if(product==null){
+			map.put("MESSAG","DATA NOT FOUND");
+			map.put("STATUS",false);
+		}else{
+			map.put("MESSAG","DATA FOUND");
+			map.put("STATUS",true);
+			map.put("DATA",product);
+		}
+		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+	}
+	
+	
+	
 	@RequestMapping(value={"api/temporary/status"}, method = RequestMethod.POST)
-	public ResponseEntity<Map<String,Object>> findproductbyid(@RequestBody List<Object> allid){
+	public ResponseEntity<Map<String,Object>> findproductbyid(@RequestBody List<Object> id){
+		System.out.println("Hello id API");
 		Map<String,Object> map = new HashMap<>();
 		ArrayList<Products> all_product = new ArrayList<>();
-		
-		System.out.println("API "+allid);
-		
-		int i=0;
 		try{
-		for(Object id : allid){
-			all_product.add(producttemporaryimplement.find_into_product(Integer.valueOf(id.toString())));
-			producttemporaryimplement.update_status("yes",Integer.valueOf(id.toString()));
-			//System.out.println("ID "+Integer.valueOf(id.toString())+" s "+all_product.get(i).getProduct_id());
-			i++;
-		}
+			System.out.println("API "+id);
+			for(Object pro_id : id){
+				int pro_i = Integer.parseInt(String.valueOf(pro_id));
+				all_product.add(producttemporaryimplement.find_into_product(pro_i));
+				producttemporaryimplement.update_status("yes",pro_i);
+				productserviceimplement.save(all_product);
+			}
+			
+			System.out.println("pro "+all_product);
 		}catch(Exception ex){
 			System.out.println("Error "+ex.getMessage());
 		}
+		map.put("s", 123);
 		
-		System.out.println("all product "+all_product.get(0).getProduct_name());
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
 	
@@ -96,5 +127,6 @@ public class ProductsTemporaryController {
 		}
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
+	
 	
 }

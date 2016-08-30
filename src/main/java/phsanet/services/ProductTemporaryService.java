@@ -15,4 +15,5 @@ public interface ProductTemporaryService {
 	public ArrayList<Products> search(String search);
 	public Products find_into_product(int id);
 	public boolean update_status(String  status , int id);
+	public boolean removeall();
 }

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import phsanet.entitys.Site_Detail_Managerment;
-import phsanet.repositorys.SiteDetailManagermentRepository;
+import phsanet.repositorys.ScrapDetailManagermentRepository;
 import phsanet.services.SiteDetailMangermentService;
 
 @Service
@@ -17,7 +17,7 @@ public class SiteDetailManagermenetImplement implements SiteDetailMangermentServ
 	
 	@Autowired
 	@Qualifier("Scrapmanagermentrepository")
-	private SiteDetailManagermentRepository scrapmanagermentrepository;
+	private ScrapDetailManagermentRepository scrapmanagermentrepository;
 	
 	@Override
 	public ArrayList<Site_Detail_Managerment> findAll() {
